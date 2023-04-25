@@ -30,7 +30,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		resl->next = malloc(sizeof(t_list));
 		if (!resl->next)
 		{
-			ft_lstclear(&lst, del);
+			ft_lstclear(&first, del);
 			return (0);
 		}
 		resl->next->content = f(lst->content);
