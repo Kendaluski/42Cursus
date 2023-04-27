@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:08:00 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/26 15:56:09 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:46:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	**free_mem(char **str)
 		free(str[cnt]);
 		cnt++;
 	}
-	free(str[cnt]);
+	free(str);
 	return (NULL);
 }
 
@@ -99,15 +99,15 @@ char	**ft_split(char const *s, char c)
 	return (arrr);
 }
 
-int	main(void)
-{
-	char **str;
-	int cnt;
-	cnt = 0;
-	str = ft_split("hello!", ' ');
-	while (str[cnt] != 0)
-	{
-		printf("%s\n", str[cnt]);
-		cnt++;
-	}
-}
+// int	main(void)
+// {
+// 	char **str;
+// 	int cnt;
+// 	cnt = 0;
+// 	str = ft_split("hello!", ' ');
+// 	while (str[cnt] != 0)
+// 	{
+// 		printf("%s\n", str[cnt]);
+// 		cnt++;
+// 	}
+// }
