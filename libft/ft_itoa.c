@@ -6,17 +6,17 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:49:13 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/25 14:56:29 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:45:33 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n);
+char		*ft_itoa(int n);
 
-static int	num_digits(int n)
+static int	num_digits(unsigned int n)
 {
-	int	digits;
+	unsigned int	digits;
 
 	digits = 0;
 	if (n < 0)
@@ -31,10 +31,10 @@ static int	num_digits(int n)
 	return (digits);
 }
 
-static int	get_div(int num)
+static int	get_div(unsigned int num)
 {
-	int	tens;
-	int	cnt;
+	int				tens;
+	unsigned int	cnt;
 
 	tens = 1;
 	cnt = 0;
@@ -46,10 +46,10 @@ static int	get_div(int num)
 	return (tens);
 }
 
-static char	*str_prep(int dig, char *str, int cnt, int n)
+static char	*str_prep(int dig, char *str, int cnt, unsigned int n)
 {
-	int	div;
-	int	mod;
+	unsigned int	div;
+	unsigned int	mod;
 
 	while (dig > 0)
 	{
@@ -64,57 +64,46 @@ static char	*str_prep(int dig, char *str, int cnt, int n)
 	return (str);
 }
 
-static char	*case_z(int n)
+static char	*neg_case_zero(unsigned int n2)
 {
-	int		cnt;
 	char	*str;
 
-	if (n == 0)
+	if (n2 == 0)
 	{
 		str = malloc(2);
 		if (!str)
 			return (0);
 		str[0] = '0';
 		str[1] = '\0';
+		return (str);
 	}
-	else
-	{
-		cnt = 0;
-		str = ft_itoa(n + 1);
-		while (str[cnt])
-		{
-			if (str[cnt + 1] == '\0')
-				str[cnt] = str[cnt] + 1;
-			cnt++;
-		}
-	}
+	str = malloc(num_digits(n2) * sizeof(char) + 2);
+	if (!str)
+		return (0);
+	str[0] = '-';
 	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		cnt;
+	char			*str;
+	unsigned int	cnt;
+	unsigned int	n2;
 
 	cnt = 0;
-	if (n == 0 || n == -2147483648)
-		str = case_z(n);
+	if (n < 0 || n == 0)
+	{
+		n2 = (unsigned int)n * -1;
+		str = neg_case_zero(n2);
+		cnt = 1;
+	}
 	else
 	{
-		if (n < 0)
-		{
-			str = malloc(num_digits(n) * sizeof(char) + 2);
-			if (!str)
-				return (0);
-			str[0] = '-';
-			n = n * -1;
-			cnt = 1;
-		}
-		else
-			str = malloc(num_digits(n) * sizeof(char) + 1);
-		if (!str)
-			return (0);
-		str = str_prep(num_digits(n), str, cnt, n);
+		n2 = (unsigned int)n;
+		str = malloc(num_digits(n2) * sizeof(char) + 1);
 	}
+	if (!str)
+		return (0);
+	str = str_prep(num_digits(n2), str, cnt, n2);
 	return (str);
 }

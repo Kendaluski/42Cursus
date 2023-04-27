@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:08:00 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/25 14:20:02 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:56:09 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*get_arr(const char *s, char c)
 	cnt = 0;
 	while (s[cnt] != '\0' && s[cnt] != c)
 		cnt++;
-	arr = malloc(cnt * sizeof(char) + 1);
+	arr = malloc((cnt + 1) * sizeof(char));
 	if (!arr)
 		return (0);
 	cnt = 0;
@@ -54,6 +54,20 @@ static char	*get_arr(const char *s, char c)
 	}
 	arr[cnt] = '\0';
 	return (arr);
+}
+
+static char	**free_mem(char **str)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (str[cnt])
+	{
+		free(str[cnt]);
+		cnt++;
+	}
+	free(str[cnt]);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
@@ -72,6 +86,11 @@ char	**ft_split(char const *s, char c)
 		while (*s && *s == c)
 			s++;
 		arrr[cnt] = get_arr(s, c);
+		if (!arrr[cnt])
+		{
+			arrr = free_mem(arrr);
+			return (0);
+		}
 		cnt++;
 		while (*s != c && *s)
 			s++;
@@ -80,15 +99,15 @@ char	**ft_split(char const *s, char c)
 	return (arrr);
 }
 
-// int	main(void)
-// {
-// 	char **str;
-// 	int cnt;
-// 	cnt = 0;
-// 	str = ft_split("hello!", ' ');
-// 	while (str[cnt] != 0)
-// 	{
-// 		printf("%s\n", str[cnt]);
-// 		cnt++;
-// 	}
-// }
+int	main(void)
+{
+	char **str;
+	int cnt;
+	cnt = 0;
+	str = ft_split("hello!", ' ');
+	while (str[cnt] != 0)
+	{
+		printf("%s\n", str[cnt]);
+		cnt++;
+	}
+}
