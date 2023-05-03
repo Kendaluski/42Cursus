@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:39:24 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/03 15:56:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:22:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 int	ft_char(char argl);
 int	ft_string(char *str);
+int	ft_int(int num);
+int	ft_countchars(const char *str);
+int ft_decimal(double num);
 int	ft_printf(char const *str, ...)
 {
 	va_list	lst;
@@ -46,11 +49,17 @@ int	ft_printf(char const *str, ...)
 		}
 		else if (str[cnt + 1] == 'i')
 		{
-			//chars = chars + ft_int(str[cnt + 1], va_arg(lst, int));
+			chars = chars + ft_int(va_arg(lst, int));
+			cnt++;
+		}
+		else if(str[cnt + 1] == 'd')
+		{
+			chars = chars + ft_decimal(va_arg(lst,double));
+			cnt++;
 		}
 		cnt++;
 	}
-	chars = chars + cnt;
+	chars = chars + ft_countchars(str);
 	return (chars);
 }
 
@@ -58,6 +67,6 @@ int	main(void)
 {
 	int a;
 
-	a = ft_printf("%s", "hola");
+	a = ft_printf("%d", .4);
 	printf("\n%i", a);
 }
