@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:39:24 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/03 18:22:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:44:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	ft_char(char argl);
-int	ft_string(char *str);
-int	ft_int(int num);
+int	ft_putstr(char *str);
+int	ft_check_format(char c, int a);
 int	ft_countchars(const char *str);
-int ft_decimal(double num);
+
 int	ft_printf(char const *str, ...)
 {
 	va_list	lst;
@@ -32,29 +31,14 @@ int	ft_printf(char const *str, ...)
 	{
 		if (str[cnt] != '%')
 			write(1, &str[cnt], 1);
-		else if (str[cnt] == '%' && str[cnt + 1] == 'c')
-		{
-			chars = chars + ft_char(va_arg(lst, int));
-			cnt++;
-		}
-		else if (str[cnt] == '%' && str[cnt + 1] == '%')
-		{
-			write(1, "%", 1);
-			cnt++;
-		}
 		else if (str[cnt + 1] == 's')
 		{
-			chars = chars + ft_string(va_arg(lst, char *));
+			chars = chars + ft_putstr(va_arg(lst, char *));
 			cnt++;
 		}
-		else if (str[cnt + 1] == 'i')
+		else
 		{
-			chars = chars + ft_int(va_arg(lst, int));
-			cnt++;
-		}
-		else if(str[cnt + 1] == 'd')
-		{
-			chars = chars + ft_decimal(va_arg(lst,double));
+			chars = chars + ft_check_format(str[cnt + 1], va_arg(lst, int));
 			cnt++;
 		}
 		cnt++;
@@ -66,7 +50,11 @@ int	ft_printf(char const *str, ...)
 int	main(void)
 {
 	int a;
+	char b;
+	char *c;
 
-	a = ft_printf("%d", .4);
+	b = 'c';
+	c = &b;
+	a = ft_printf("%p", &b);
 	printf("\n%i", a);
 }

@@ -6,13 +6,12 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:12:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/03 17:41:55 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:27:51 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
-#include <stdio.h>
 
 int	ft_countchars(const char *str)
 {
@@ -30,7 +29,7 @@ int	ft_countchars(const char *str)
 	return (chars);
 }
 
-int	ft_string(char *str)
+int	ft_putstr(char *str)
 {
 	int	cnt;
 
@@ -43,12 +42,12 @@ int	ft_string(char *str)
 	return (cnt);
 }
 
-int	ft_char(char argl)
+int	ft_putchar(char c)
 {
-	write(1, &argl, 1);
+	write(1, &c, 1);
 	return (1);
 }
-static int	ft_digits(int num)
+int	ft_digits(int num)
 {
 	unsigned int	i;
 	unsigned int	n;
@@ -68,7 +67,7 @@ static int	ft_digits(int num)
 	}
 	return (i);
 }
-int	ft_int(int num)
+int	ft_putnbr(int num)
 {
 	int	aux;
 	int	count;
@@ -85,8 +84,8 @@ int	ft_int(int num)
 		}
 		if (num > 9)
 		{
-			ft_int(num / 10);
-			ft_int(num % 10);
+			ft_putnbr(num / 10);
+			ft_putnbr(num % 10);
 		}
 		else
 		{
@@ -96,12 +95,3 @@ int	ft_int(int num)
 	}
 	return (count);
 }
-/*
-int main (void)
-{
-	int a;
-
-	a = ft_int(-2147483648);
-	printf("\n%i", a);
-}
-*/
