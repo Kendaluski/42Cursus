@@ -6,13 +6,13 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:12:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/09 16:33:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:57:49 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_countchars(const char *str)
+int	ft_countchars(const char* str)
 {
 	int	cnt;
 	int	chars;

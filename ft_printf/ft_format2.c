@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:36:13 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/09 16:43:59 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:49:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,12 @@ int	ft_putptr(long unsigned int ptr)
 	return (num + 2);
 }
 
-int	ft_check_format(char c, int a)
+int	ft_format_number(char c, unsigned int a)
 {
-	if (c == '%')
-	{
-		write(1, "%", 1);
-		return (2);
-	}
-	if (c == 'c')
-		return (ft_putchar(a));
-	if (c == 'i')
-		return (ft_putnbr(a));
-	if (c == 'd')
-		return (ft_putnbr(a));
-	if (c == 'p')
-		return (ft_putptr(a));
+	if(c == 'u')
+		return(ft_putud(a));
+	if(c == 'x')
+		return(ft_puthex(c,a));
 	return (0);
 }
 int	ft_digitsu(unsigned int num)
