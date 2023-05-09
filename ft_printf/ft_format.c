@@ -6,12 +6,11 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 16:12:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/05 12:27:51 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:33:16 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 int	ft_countchars(const char *str)
 {
@@ -34,6 +33,11 @@ int	ft_putstr(char *str)
 	int	cnt;
 
 	cnt = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[cnt])
 	{
 		write(1, &str[cnt], 1);
@@ -47,12 +51,15 @@ int	ft_putchar(char c)
 	write(1, &c, 1);
 	return (1);
 }
+
 int	ft_digits(int num)
 {
 	unsigned int	i;
 	unsigned int	n;
 
 	i = 0;
+	if (num == 0)
+		return (1);
 	if (num < 0)
 	{
 		i++;
@@ -67,6 +74,7 @@ int	ft_digits(int num)
 	}
 	return (i);
 }
+
 int	ft_putnbr(int num)
 {
 	int	aux;

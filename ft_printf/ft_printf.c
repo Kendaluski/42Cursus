@@ -6,19 +6,14 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:39:24 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/05 15:44:21 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:44:14 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+#include "ft_printf.h"
 #include <stdio.h>
-#include <unistd.h>
 
-int	ft_putstr(char *str);
-int	ft_check_format(char c, int a);
-int	ft_countchars(const char *str);
-
-int	ft_printf(char const *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	lst;
 	int		cnt;
@@ -36,6 +31,21 @@ int	ft_printf(char const *str, ...)
 			chars = chars + ft_putstr(va_arg(lst, char *));
 			cnt++;
 		}
+		else if (str[cnt + 1] == 'p')
+		{
+			chars = chars + ft_putptr(va_arg(lst, unsigned long int));
+			cnt++;
+		}
+		else if (str[cnt + 1] == 'x' || str[cnt + 1] == 'X')
+		{
+			chars = chars + ft_puthex(str[cnt + 1], va_arg(lst, unsigned int));
+			cnt++;
+		}
+		else if (str[cnt + 1] == 'u')
+		{
+			chars = chars + ft_putud(va_arg(lst, unsigned int));
+			cnt++;
+		}
 		else
 		{
 			chars = chars + ft_check_format(str[cnt + 1], va_arg(lst, int));
@@ -44,17 +54,13 @@ int	ft_printf(char const *str, ...)
 		cnt++;
 	}
 	chars = chars + ft_countchars(str);
+	va_end(lst);
 	return (chars);
 }
-
 int	main(void)
 {
-	int a;
-	char b;
-	char *c;
-
-	b = 'c';
-	c = &b;
-	a = ft_printf("%p", &b);
-	printf("\n%i", a);
+	int a = ft_printf(" %%%% ");
+	ft_printf("\n%i\n", a);
+	int b = printf(" %% ");
+	printf("\n%i", b);
 }
