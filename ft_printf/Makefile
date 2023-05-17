@@ -21,7 +21,7 @@ $(NAME): $(OBJECTS)
 	@ar rsc $(NAME) $(OBJECTS)
 
 $(OBJECTS) :$(FILES)
-	@gcc -c $(FILES)
+	@gcc $(FLAGS) -c $(FILES)
 
 clean:
 	@rm -f $(OBJECTS)
