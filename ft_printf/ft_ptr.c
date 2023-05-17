@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 05:22:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/11 05:37:58 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:05:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	ft_putptr(long unsigned int ptr)
 
 	if (ptr == 0)
 	{
-		write(1, "(nil)", 5);
-		return (5);
+		write(1, "0x0", 3);
+		return (3);
 	}
 	write(1, "0x", 2);
 	num = ft_puthexp(ptr, 16);

@@ -6,11 +6,12 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:39:24 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/11 05:38:04 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:05:14 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_check_format(va_list params, char c)
 {
@@ -59,8 +60,8 @@ int	ft_printf(const char *str, ...)
 }
 // int	main(void)
 // {
-// 	int a = ft_printf(" %u ", -1);
+// 	int a = ft_printf(" %p %p ", 0, 0);
 // 	ft_printf("\n%i\n", a);
-// 	int b = printf(" %u ", -1);
+// 	int b = printf(" %p %p ", 0, 0);
 // 	printf("\n%i\n", b);
 // }
