@@ -6,38 +6,45 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:47:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/31 13:54:25 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:41:35 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libs/libft.h"
-#include "../MLX42/include/MLX42/MLX42.h"
-#define WIDTH 256
-#define HEIGHT 256
+#include "solong.h"
 
-static void ft_exit_error(void)
+void	ft_exit_error(void)
 {
 	ft_printf("%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
-static void ft_print_size(void *param)
+// int	main(void)
+// {
+// 	mlx_texture_t	*texture;
+
+// 	mlx_set_setting(MLX_MAXIMIZED, false);
+// 	g_data.mlx = mlx_init(WIDTH, HEIGHT, "Never Gonna Give You Up", true);
+// 	if (!g_data.mlx)
+// 		ft_exit_error();
+// 	texture = mlx_load_png("./sprites/player/idle.png");
+// 	if (!texture)
+// 		ft_exit_error();
+// 	g_data.img = mlx_texture_to_image(g_data.mlx, texture);
+// 	if (!g_data.img)
+// 		ft_exit_error();
+// 	if (!g_data.img || (mlx_image_to_window(g_data.mlx, g_data.img, 0, 0) < 0))
+// 		ft_exit_error();
+// 	mlx_key_hook(g_data.mlx, ft_movement, g_data.mlx);
+// 	mlx_loop(g_data.mlx);
+// 	mlx_terminate(g_data.mlx);
+// 	return (EXIT_SUCCESS);
+// }
+
+int	main(int argc, char *argv[])
 {
-	const mlx_t *mlx=param;
-	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
-int main(void)
-{
-	//define that window'll be maximized
-	mlx_set_setting(MLX_MAXIMIZED, false);
-	mlx_t *mlx = mlx_init(WIDTH,HEIGHT,"Test_Chema", true);
-	if(!mlx)
-		ft_exit_error();
-	mlx_image_t *img = mlx_new_image(mlx,WIDTH,HEIGHT);
-	if(!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		ft_exit_error();
-	mlx_loop_hook(mlx,ft_print_size, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	if (argc == 2)
+	{
+		ft_printf("Map: \n%s\nMap Height: %i || Map Width: %i",
+				ft_read_file(argv[1]), g_map.height, g_map.width);
+	}
 }
