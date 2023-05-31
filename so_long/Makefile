@@ -6,12 +6,12 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 17:21:06 by jjaen-mo          #+#    #+#              #
-#    Updated: 2023/05/31 13:55:05 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/05/31 14:31:50 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-FLAGS = -Wall -Wextra -Werror -fast
+FLAGS = -Wall -Wextra -Werror
 MLX42 = MLX42/libmlx42.a
 LIBFT = include/libft.a
 
@@ -21,11 +21,13 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-%.o: %.c
-	@gcc $(FLAGS) -c $< -o $@ $(INCLUDES)
+$(NAME): $(LIBFT) $(MLX42) $(OBJS)
+	@gcc $(FLAGS) $(OBJS) $(MLX42) $(LIBFT) -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L "/Users/jjaen-mo/.brew/opt/glfw/lib/" -o $(NAME)
 
-$(NAME): $(LIBFT) $(MLX42)
-	@gcc -Wall -Wextra -Werror $(SRCS) $(MLX42) $(LIBFT) -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L "/Users/jjaen-mo/.brew/opt/glfw/lib/" -o $(NAME)
+$(OBJS): $(SRCS)
+	@mkdir -p src
+	@gcc -c $(SRCS) $(FLAGS)
+	@mv *.o src
 
 $(MLX42):
 	make -C MLX42
