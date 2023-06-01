@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:54:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/01 19:01:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:56:46 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 // {
 // 	int width;
 // 	int height;
-
 
 // }
 
@@ -40,11 +39,32 @@ void	ft_create_textures(void)
 	g_data.exit = mlx_texture_to_image(g_data.mlx, texture);
 	mlx_delete_texture(texture);
 }
+
+void	ft_gen_player(void)
+{
+	int	cnt;
+	int	cnt2;
+
+	cnt = 0;
+	while (g_data.map.matrix[cnt])
+	{
+		cnt2 = 0;
+		while (g_data.map.matrix[cnt][cnt2])
+		{
+			if (g_data.map.matrix[cnt][cnt2] == 'P')
+				ft_player(cnt, cnt2);
+			cnt2++;
+		}
+		cnt++;
+	}
+}
+
 void	ft_gen_map(void)
 {
+	int	cnt;
+	int	cnt2;
+
 	ft_create_textures();
-	int cnt;
-	int cnt2;
 	cnt = 0;
 	while (g_data.map.matrix[cnt])
 	{
@@ -55,8 +75,6 @@ void	ft_gen_map(void)
 				ft_wall(cnt, cnt2);
 			if (g_data.map.matrix[cnt][cnt2] == '0')
 				ft_floor(cnt, cnt2);
-			if (g_data.map.matrix[cnt][cnt2] == 'P')
-				ft_player(cnt, cnt2);
 			if (g_data.map.matrix[cnt][cnt2] == 'C')
 				ft_collectible(cnt, cnt2);
 			if (g_data.map.matrix[cnt][cnt2] == 'E')
@@ -65,4 +83,5 @@ void	ft_gen_map(void)
 		}
 		cnt++;
 	}
+	ft_gen_player();
 }
