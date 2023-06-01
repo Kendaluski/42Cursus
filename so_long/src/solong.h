@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/31 20:43:29 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:59:35 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_data
-{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-}				t_data;
-
 typedef struct s_map
 {
 	char		**matrix;
@@ -31,11 +25,28 @@ typedef struct s_map
 	int			height;
 }				t_map;
 
-t_map			g_map;
+typedef struct s_data
+{
+	mlx_t		*mlx;
+	mlx_image_t	*character;
+	mlx_image_t	*floor;
+	mlx_image_t	*wall;
+	mlx_image_t	*coll;
+	mlx_image_t	*exit;
+	t_map		map;
+}				t_data;
+
 t_data			g_data;
 
 void			ft_movement(mlx_key_data_t keydata, void *window);
 char			*ft_read_file(char *file);
-char			**ft_create_map(char *path);
+void			ft_create_map(char *map_arr);
 void			ft_exit_error(void);
+void			ft_create_textures(void);
+void			ft_gen_map(void);
+void			ft_wall(int width, int height);
+void			ft_floor(int width, int height);
+void			ft_player(int width, int height);
+void			ft_collectible(int width, int height);
+void			ft_exit_img(int width, int height);
 #endif
