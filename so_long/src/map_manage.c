@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:48:12 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/01 13:43:50 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:50:44 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_map_error(char type)
 		ft_printf("Error: \n Mapa innacesible");
 	exit(1);
 }
+
 char	*ft_read_file(char *file)
 {
 	int		fd;
