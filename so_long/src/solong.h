@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 14:58:46 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:11:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ t_data			ft_get_hw(char *map, t_data data);
 
 char			**ft_create_map(char *map_arr, int height, int width);
 
-int				ft_create_window(t_data data);
-
 void			ft_exit_error(void);
 
 t_data			ft_gen_map(t_data data);
@@ -72,7 +70,7 @@ t_data			ft_player(int height, int width, t_data data);
 
 void			ft_movement(mlx_key_data_t keydata, void *data);
 
-int				ft_next_pos(int32_t height, int32_t width, char key, char c,
+int				ft_next_pos(int32_t height, int32_t width, char key,
 					char **map);
 
 void			ft_close_window(t_data data);
@@ -84,4 +82,6 @@ void			ft_add_coll(void *data);
 void			ft_change_exit(void *data);
 
 char			**ft_free(char **map);
+
+void			ft_leaks(void);
 #endif

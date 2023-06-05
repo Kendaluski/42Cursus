@@ -6,13 +6,13 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:25:52 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 14:54:46 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:11:29 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-t_data ft_init_data(t_data data)
+t_data	ft_init_data(t_data data)
 {
 	data.character = 0;
 	data.floor = 0;
@@ -24,7 +24,6 @@ t_data ft_init_data(t_data data)
 	data.map.height = 0;
 	data.coll_count = 0;
 	data.max_colls = 0;
-
 	return (data);
 }
 
@@ -48,18 +47,18 @@ void	ft_change_exit(void *data)
 	}
 }
 
-int	ft_next_pos(int32_t height, int32_t width, char key, char c, char **map)
+int	ft_next_pos(int32_t height, int32_t width, char key, char **map)
 {
 	int	res;
 
 	res = 0;
-	if (map[height - 1][width] && map[height - 1][width] == c && key == 'w')
+	if (map[height - 1][width] && map[height - 1][width] == '1' && key == 'w')
 		res = 1;
-	if (map[height][width + 1] && map[height][width + 1] == c && key == 'd')
+	if (map[height][width + 1] && map[height][width + 1] == '1' && key == 'd')
 		res = 1;
-	if (map[height + 1][width] && map[height + 1][width] == c && key == 's')
+	if (map[height + 1][width] && map[height + 1][width] == '1' && key == 's')
 		res = 1;
-	if (map[height][width - 1] && map[height][width - 1] == c && key == 'a')
+	if (map[height][width - 1] && map[height][width - 1] == '1' && key == 'a')
 		res = 1;
 	return (res);
 }
@@ -76,16 +75,16 @@ void	ft_movement(mlx_key_data_t keydata, void *data)
 	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_W && ft_next_pos(*posy / 64, *posx / 64, 'w',
-				'1', dataptr->map.matrix) != 1)
+				dataptr->map.matrix) != 1)
 			*posy -= 64;
 		if (keydata.key == MLX_KEY_A && ft_next_pos(*posy / 64, *posx / 64, 'a',
-				'1', dataptr->map.matrix) != 1)
+				dataptr->map.matrix) != 1)
 			*posx -= 64;
 		if (keydata.key == MLX_KEY_S && ft_next_pos(*posy / 64, *posx / 64, 's',
-				'1', dataptr->map.matrix) != 1)
+				dataptr->map.matrix) != 1)
 			*posy += 64;
 		if (keydata.key == MLX_KEY_D && ft_next_pos(*posy / 64, *posx / 64, 'd',
-				'1', dataptr->map.matrix) != 1)
+				dataptr->map.matrix) != 1)
 			*posx += 64;
 		if (keydata.key == MLX_KEY_ESCAPE)
 			ft_close_window(*dataptr);

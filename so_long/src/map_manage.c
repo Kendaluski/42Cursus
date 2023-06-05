@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:48:12 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 14:42:24 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:04:54 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ char	**ft_create_map(char *map_arr, int height, int width)
 	}
 	matrix[cnt] = 0;
 	free(map_arr);
-	return(matrix);
+	return (matrix);
 }

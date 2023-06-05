@@ -6,18 +6,18 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:54:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 14:53:46 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:03:56 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-int		ft_get_max_colls(char **map)
+int	ft_get_max_colls(char **map)
 {
 	int	cnt;
 	int	cnt2;
-	int max_colls;
-	
+	int	max_colls;
+
 	cnt = 0;
 	max_colls = 0;
 	while (map[cnt])
@@ -31,7 +31,7 @@ int		ft_get_max_colls(char **map)
 		}
 		cnt++;
 	}
-	return(max_colls);
+	return (max_colls);
 }
 
 t_data	ft_malloc_colls(t_data data)
@@ -47,9 +47,8 @@ t_data	ft_malloc_colls(t_data data)
 t_data	ft_create_textures(t_data data)
 {
 	mlx_texture_t	*texture;
-	static int		cnt;
+	static int		cnt = 0;
 
-	cnt = 0;
 	texture = mlx_load_png("./sprites/player/geralt.jpeg");
 	data.character = mlx_texture_to_image(data.mlx, texture);
 	mlx_delete_texture(texture);
