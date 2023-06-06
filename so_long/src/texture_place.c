@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:55:28 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 15:07:33 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:58:55 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ t_data	ft_player(int height, int width, t_data data)
 
 void	ft_collectible(int height, int width, t_data data)
 {
-	static int	cnt;
+	static int	cnt = 0;
 
-	cnt = 0;
 	mlx_image_to_window(data.mlx, data.floor, width * 64, height * 64);
 	if (cnt < data.max_colls)
 	{
@@ -45,9 +44,11 @@ void	ft_leaks(void)
 
 void	ft_open_exit(t_data data)
 {
-	int	cnt;
+	int		cnt;
+	t_data	*ptr;
 
 	cnt = 0;
+	ptr = &data;
 	if (data.coll_count == data.max_colls)
 	{
 		data.exit->enabled = true;
@@ -55,7 +56,7 @@ void	ft_open_exit(t_data data)
 				/ 64][data.character->instances[0].x / 64] == 'E')
 		{
 			ft_printf("¡You Won!\n");
-			ft_close_window(data);
+			ft_close_window(ptr);
 		}
 	}
 }

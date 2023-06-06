@@ -6,39 +6,36 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:54:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 15:03:56 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:55:46 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-int	ft_get_max_colls(char **map)
+int	ft_get_max(char **map, char c)
 {
 	int	cnt;
 	int	cnt2;
-	int	max_colls;
+	int	max;
 
 	cnt = 0;
-	max_colls = 0;
+	max = 0;
 	while (map[cnt])
 	{
 		cnt2 = 0;
 		while (map[cnt][cnt2])
 		{
-			if (map[cnt][cnt2] == 'C')
-				max_colls++;
+			if (map[cnt][cnt2] == c)
+				max++;
 			cnt2++;
 		}
 		cnt++;
 	}
-	return (max_colls);
+	return (max);
 }
 
 t_data	ft_malloc_colls(t_data data)
 {
-	int	cnt;
-
-	cnt = 0;
 	data.colls = malloc(sizeof(mlx_image_t *) * data.max_colls + 1);
 	data.colls[data.max_colls] = 0;
 	return (data);
@@ -69,6 +66,7 @@ t_data	ft_create_textures(t_data data)
 	texture = mlx_load_png("./sprites/tilesets/walls/doorC.png");
 	data.exit = mlx_texture_to_image(data.mlx, texture);
 	mlx_delete_texture(texture);
+	data = ft_enemy_texture(data);
 	return (data);
 }
 
@@ -97,8 +95,6 @@ t_data	ft_gen_map(t_data data)
 	int	cnt;
 	int	cnt2;
 
-	data.max_colls = ft_get_max_colls(data.map.matrix);
-	data = ft_create_textures(data);
 	cnt = 0;
 	while (data.map.matrix[cnt])
 	{
@@ -113,6 +109,8 @@ t_data	ft_gen_map(t_data data)
 				ft_collectible(cnt, cnt2, data);
 			if (data.map.matrix[cnt][cnt2] == 'E')
 				ft_exit_img(cnt, cnt2, data);
+			if (data.map.matrix[cnt][cnt2] == 'B')
+				ft_enemies(data, cnt2, cnt);
 			cnt2++;
 		}
 		cnt++;

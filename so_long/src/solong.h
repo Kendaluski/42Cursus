@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 15:11:00 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:23:34 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ typedef struct s_data
 	mlx_image_t	*wall;
 	mlx_image_t	**colls;
 	mlx_image_t	*exit;
+	mlx_image_t	**enemies;
 	t_map		map;
 	int			coll_count;
 	int			max_colls;
+	int			enem_count;
+	int			steps;
 }				t_data;
 
 t_data			ft_init_data(t_data data);
@@ -54,7 +57,7 @@ void			ft_exit_error(void);
 
 t_data			ft_gen_map(t_data data);
 
-int				ft_get_max_colls(char **map);
+int				ft_get_max(char **map, char c);
 
 t_data			ft_create_textures(t_data data);
 
@@ -73,7 +76,7 @@ void			ft_movement(mlx_key_data_t keydata, void *data);
 int				ft_next_pos(int32_t height, int32_t width, char key,
 					char **map);
 
-void			ft_close_window(t_data data);
+void			ft_close_window(void *data);
 
 void			ft_open_exit(t_data data);
 
@@ -84,4 +87,18 @@ void			ft_change_exit(void *data);
 char			**ft_free(char **map);
 
 void			ft_leaks(void);
+
+void			ft_parse_map(char *map);
+
+void			ft_add_step(t_data *data, int32_t *posx, int32_t *posy,
+					char key);
+
+t_data			ft_enemy_texture(t_data data);
+
+void			ft_enemies(t_data data, int width, int height);
+
+void			ft_enemy_touch(t_data data);
+
+void			ft_equal_width(t_data data, int width, int height);
+
 #endif

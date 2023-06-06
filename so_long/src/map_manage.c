@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:48:12 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 15:04:54 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:11:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@ t_data	ft_get_hw(char *map, t_data data)
 	cnt2++;
 	data.map.height = cnt2;
 	return (data);
-}
-
-void	ft_map_error(char type)
-{
-	if (type == 'n')
-		ft_printf("Error: \n Mapa innacesible");
-	exit(1);
 }
 
 char	*ft_read_file(char *file)
