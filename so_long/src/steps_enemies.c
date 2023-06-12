@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:49:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 19:12:09 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:53:20 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_add_step(t_data *data, int32_t *posx, int32_t *posy, char key)
 {
+	static mlx_image_t	*steps = NULL;
+	char				*str;
+
 	if (key == 'w')
 	{
 		*posy -= 64;
@@ -34,7 +37,8 @@ void	ft_add_step(t_data *data, int32_t *posx, int32_t *posy, char key)
 		*posx += 64;
 		data->steps++;
 	}
-	ft_printf("Steps: %i\n", data->steps);
+	str = ft_itoa(data->steps);
+	steps = ft_put_steps(data, str, steps);
 }
 
 t_data	ft_malloc_enemies(t_data data)
@@ -66,27 +70,32 @@ t_data	ft_enemy_texture(t_data data)
 
 void	ft_enemies(t_data data, int width, int height)
 {
-	static int cnt = 0;
+	static int	cnt = 0;
 
 	mlx_image_to_window(data.mlx, data.floor, width * 64, height * 64);
 	if (cnt < data.enem_count)
 	{
 		mlx_image_to_window(data.mlx, data.enemies[cnt], width * 64, height
-				* 64);
+			* 64);
 		cnt++;
 	}
 }
 
-void ft_enemy_touch(t_data data)
+void	ft_enemy_touch(t_data data)
 {
-	int cnt;
+	int		cnt;
+	int32_t	posx;
+	int32_t	posy;
 
 	cnt = 0;
+	posx = data.character->instances[0].x;
+	posy = data.character->instances[0].y;
 	while (cnt < data.enem_count)
 	{
-		if (data.character->instances[0].x == data.enemies[cnt]->instances[0].x
-			&& data.character->instances[0].y == data.enemies[cnt]->instances[0].y)
+		if (posx == data.enemies[cnt]->instances[0].x
+			&& posy == data.enemies[cnt]->instances[0].y)
 		{
+			ft_add_step(&data, &posx, &posy, 'w');
 			ft_printf("You lose!\n");
 			ft_close_window(&data);
 		}

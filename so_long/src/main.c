@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:47:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 19:26:51 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:48:02 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 		data = ft_get_hw(file_read, data);
 		data.map.matrix = ft_create_map(file_read, data.map.height,
 				data.map.width);
-		ft_equal_width(data,data.map.width,data.map.height);
+		ft_equal_width(data, data.map.width, data.map.height);
 		ft_create_window(data);
 	}
 }

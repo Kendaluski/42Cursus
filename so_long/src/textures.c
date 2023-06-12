@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:54:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 18:55:46 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:22:54 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_data	ft_create_textures(t_data data)
 	mlx_texture_t	*texture;
 	static int		cnt = 0;
 
-	texture = mlx_load_png("./sprites/player/geralt.jpeg");
+	texture = mlx_load_png("./sprites/player/skyrim.png");
 	data.character = mlx_texture_to_image(data.mlx, texture);
 	mlx_delete_texture(texture);
 	texture = mlx_load_png("./sprites/tilesets/grass.png");

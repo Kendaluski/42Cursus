@@ -6,16 +6,16 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:04:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 19:32:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:47:31 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void ft_equal_width(t_data data, int width, int height)
+void	ft_equal_width(t_data data, int width, int height)
 {
-	int cnt;
-	int cnt2;
+	int	cnt;
+	int	cnt2;
 
 	cnt = 0;
 	while (cnt < height)
@@ -32,7 +32,6 @@ void ft_equal_width(t_data data, int width, int height)
 		}
 		cnt++;
 	}
-
 }
 
 int	ft_check_c(char *map)

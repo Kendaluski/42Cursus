@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 19:23:34 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:40:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ void			ft_enemies(t_data data, int width, int height);
 void			ft_enemy_touch(t_data data);
 
 void			ft_equal_width(t_data data, int width, int height);
+
+mlx_image_t		*ft_put_steps(t_data *data, char *str, mlx_image_t *steps);
 
 #endif
