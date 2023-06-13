@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:25:52 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 19:11:25 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:56:02 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_change_exit(void *data)
 		prevy = dataptr->exit->instances[0].y;
 		prevx = dataptr->exit->instances[0].x;
 		dataptr->exit->enabled = false;
-		texture = mlx_load_png("./sprites/tilesets/walls/doorO.png");
+		texture = mlx_load_png("./sprites/tilesets/ladder.png");
 		dataptr->exit = mlx_texture_to_image(dataptr->mlx, texture);
 		mlx_delete_texture(texture);
 		mlx_image_to_window(dataptr->mlx, dataptr->exit, prevx, prevy);

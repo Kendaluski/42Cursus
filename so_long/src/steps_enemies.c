@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:49:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/13 01:17:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:00:49 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_data	ft_enemy_texture(t_data data)
 	data = ft_malloc_enemies(data);
 	while (cnt < data.enem_count)
 	{
-		texture = mlx_load_png("./sprites/enemies/slime.png");
+		texture = mlx_load_png("./sprites/enemies/draugr.png");
 		data.enemies[cnt] = mlx_texture_to_image(data.mlx, texture);
 		mlx_delete_texture(texture);
 		cnt++;
@@ -95,8 +95,8 @@ void	ft_enemy_touch(t_data data)
 		if (posx == data.enemies[cnt]->instances[0].x
 			&& posy == data.enemies[cnt]->instances[0].y)
 		{
-			ft_add_step(&data, &posx, &posy, 'w');
 			ft_printf("You lose!\n");
+			ft_add_step(&data, &posx, &posy, 'w');
 			ft_close_window(&data);
 		}
 		cnt++;
