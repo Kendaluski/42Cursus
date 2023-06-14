@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:54:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/13 18:44:26 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/14 13:42:39 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ t_data	ft_create_textures(t_data data)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png("./sprites/player/skyrim.png");
+	texture = mlx_load_png("./sprites/player/idle.png");
 	data.character = mlx_texture_to_image(data.mlx, texture);
 	mlx_delete_texture(texture);
-	texture = mlx_load_png("./sprites/blocks/planks_acacia.png");
+	texture = mlx_load_png("./sprites/tilesets/planks_acacia.png");
 	data.floor = mlx_texture_to_image(data.mlx, texture);
 	mlx_delete_texture(texture);
 	data = ft_malloc_colls(data);
-	texture = mlx_load_png("./sprites/blocks/cobblestone.png");
+	texture = mlx_load_png("./sprites/tilesets/cobblestone.png");
 	data.wall = mlx_texture_to_image(data.mlx, texture);
 	mlx_delete_texture(texture);
 	texture = mlx_load_png("./sprites/tilesets/walls/doorO.png");

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:48:12 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/05 16:11:00 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:30:34 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*ft_read_file(char *file)
 	char	*file_read;
 
 	fsize = 0;
+	ft_file_extension(file);
 	buff = malloc(sizeof(char) * 2);
 	fd = open(file, O_RDONLY);
 	while (read(fd, buff, 1) == 1)

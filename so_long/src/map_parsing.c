@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:04:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/12 19:47:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:33:08 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	ft_map_error(char type)
 {
 	if (type == 'n')
 		ft_printf("Error: \n Mapa innacesible \n");
+	if (type == 'e')
+		ft_printf("Error: \n El archivo introducido no es .ber \n");
 	if (type == 'c')
 		ft_printf("Error: \n Caracteres no válidos \n");
 	if (type == 'p')

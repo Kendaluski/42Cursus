@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:49:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/13 19:00:49 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:24:55 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,15 @@ void	ft_add_step(t_data *data, int32_t *posx, int32_t *posy, char key)
 	char				*str;
 
 	if (key == 'w')
-	{
 		*posy -= 64;
-		data->steps++;
-	}
 	if (key == 'a')
-	{
 		*posx -= 64;
-		data->steps++;
-	}
 	if (key == 's')
-	{
 		*posy += 64;
-		data->steps++;
-	}
 	if (key == 'd')
-	{
 		*posx += 64;
-		data->steps++;
-	}
+	ft_change_sprite(data, key);
+	data->steps++;
 	str = ft_itoa(data->steps);
 	steps = ft_put_steps(data, str, steps);
 }
@@ -76,7 +66,7 @@ void	ft_enemies(t_data data, int width, int height)
 	if (cnt < data.enem_count)
 	{
 		mlx_image_to_window(data.mlx, data.enemies[cnt], width * 64, height
-			* 64);
+				* 64);
 		cnt++;
 	}
 }
