@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:47:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/14 14:37:37 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:00:34 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,31 @@ void	ft_exit_error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	ft_create_window(t_data data)
+int	ft_create_window(t_data data, char *file_read)
 {
 	t_data	*ptr;
+	int		tester;
 
 	ptr = &data;
-	data.mlx = mlx_init(data.map.width * 64, data.map.height * 64,
-			"Never Gonna Give You Up", false);
-	if (!data.mlx)
-		ft_exit_error();
-	data.max_colls = ft_get_max(data.map.matrix, 'C');
-	data.enem_count = ft_get_max(data.map.matrix, 'B');
-	data = ft_create_textures(data);
+	tester = 0;
+	data = ft_iniciate(data);
 	data = ft_gen_map(data);
+	tester = ft_check_solvable(&data, data.playerposx, data.playerposy,
+			&tester);
+	if (tester == 0 || data.coll_count != data.max_colls)
+	{
+		ft_printf("Error:\n El mapa no tiene solución\n");
+		ft_free(data.map.matrix);
+		exit(1);
+	}
+	data.coll_count = 0;
+	data.map.matrix = ft_free(data.map.matrix);
+	data.map.matrix = ft_create_map(file_read, data.map.height, data.map.width);
+	free(file_read);
 	mlx_close_hook(data.mlx, ft_close_window, ptr);
 	mlx_key_hook(data.mlx, ft_movement, ptr);
 	mlx_loop_hook(data.mlx, ft_change_exit, ptr);
 	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }
 
@@ -82,7 +89,7 @@ int	main(int argc, char *argv[])
 		data.map.matrix = ft_create_map(file_read, data.map.height,
 				data.map.width);
 		ft_equal_width(data, data.map.width, data.map.height);
-		ft_check_solvable(data);
-		ft_create_window(data);
+		ft_check_walls(data.map.matrix, data.map.width, data.map.height);
+		ft_create_window(data, file_read);
 	}
 }

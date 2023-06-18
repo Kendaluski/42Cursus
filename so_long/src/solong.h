@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:13 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:06:25 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_data
 	mlx_image_t	*exit;
 	mlx_image_t	**enemies;
 	t_map		map;
+	int			playerposx;
+	int			playerposy;
 	int			coll_count;
 	int			max_colls;
 	int			enem_count;
@@ -43,15 +45,25 @@ typedef struct s_data
 
 t_data			ft_init_data(t_data data);
 
-int				ft_create_window(t_data data);
-
 char			*ft_read_file(char *file);
+
+void			ft_parse_map(char *map);
 
 void			ft_map_error(char type);
 
 t_data			ft_get_hw(char *map, t_data data);
 
 char			**ft_create_map(char *map_arr, int height, int width);
+
+void			ft_equal_width(t_data data, int width, int height);
+
+char			**ft_free(char **map);
+
+void			ft_check_walls(char **map, int width, int height);
+
+int				ft_create_window(t_data data, char *file_read);
+
+t_data			ft_iniciate(t_data data);
 
 void			ft_exit_error(void);
 
@@ -84,11 +96,7 @@ void			ft_add_coll(void *data);
 
 void			ft_change_exit(void *data);
 
-char			**ft_free(char **map);
-
 void			ft_leaks(void);
-
-void			ft_parse_map(char *map);
 
 void			ft_add_step(t_data *data, int32_t *posx, int32_t *posy,
 					char key);
@@ -99,8 +107,6 @@ void			ft_enemies(t_data data, int width, int height);
 
 void			ft_enemy_touch(t_data data);
 
-void			ft_equal_width(t_data data, int width, int height);
-
 mlx_image_t		*ft_put_steps(t_data *data, char *str, mlx_image_t *steps);
 
 t_data			ft_collectible_texture(t_data data);
@@ -109,6 +115,6 @@ void			ft_change_sprite(t_data *data, char key);
 
 void			ft_file_extension(char *file);
 
-void			ft_check_solvable(t_data data);
+int				ft_check_solvable(t_data *data, int x, int y, int *trues);
 
 #endif

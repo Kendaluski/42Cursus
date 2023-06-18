@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:04:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/14 14:33:08 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 20:59:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_parse_map(char *map)
 		ft_map_error('p');
 	parsed = ft_check_c(map);
 	if (parsed == 0)
-		ft_map_error('w');
+		ft_map_error('x');
 	if (parsed == 2)
 		ft_map_error('r');
 }
@@ -115,11 +115,11 @@ void	ft_map_error(char type)
 		ft_printf("Error: \n Caracteres no válidos \n");
 	if (type == 'p')
 		ft_printf("Error: \n Mapa sin jugador o sin salida \n");
-	if (type == 'w')
+	if (type == 'x')
 		ft_printf("Error: \n Mapa sin coleccionables \n");
 	if (type == 'r')
 		ft_printf("Error: \n Mapa no rectangular \n");
-	if (type == 's')
-		ft_printf("Error: \n Mapa sin resolución \n");
+	if (type == 'w')
+		ft_printf("Error: \n Mapa no rodeado por muros \n");
 	exit(1);
 }

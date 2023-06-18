@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:38:16 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/14 14:25:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:53:37 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void	ft_change_sprite(t_data *data, char key)
 	mlx_delete_texture(texture);
 	mlx_image_to_window(data->mlx, data->character, posx, posy);
 	data->character->instances->enabled = true;
+}
+
+t_data	ft_iniciate(t_data data)
+{
+	data.mlx = mlx_init(data.map.width * 64, data.map.height * 64,
+			"Never Gonna Give You Up", false);
+	if (!data.mlx)
+		ft_exit_error();
+	data.max_colls = ft_get_max(data.map.matrix, 'C');
+	data.enem_count = ft_get_max(data.map.matrix, 'B');
+	data = ft_create_textures(data);
+	return (data);
 }

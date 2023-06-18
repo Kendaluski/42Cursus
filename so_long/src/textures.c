@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:54:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/14 13:42:39 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:32:03 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ t_data	ft_gen_player(t_data data)
 		while (data.map.matrix[cnt][cnt2])
 		{
 			if (data.map.matrix[cnt][cnt2] == 'P')
+			{
 				data = ft_player(cnt, cnt2, data);
+				data.playerposx = cnt2;
+				data.playerposy = cnt;
+			}
 			cnt2++;
 		}
 		cnt++;

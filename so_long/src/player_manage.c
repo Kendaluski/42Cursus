@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:25:52 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/13 18:56:02 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:16:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_data	ft_init_data(t_data data)
 	data.max_colls = 0;
 	data.enem_count = 0;
 	data.steps = 0;
+	data.playerposx = 0;
+	data.playerposy = 0;
 	return (data);
 }
 

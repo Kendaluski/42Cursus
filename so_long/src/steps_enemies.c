@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:49:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/14 14:24:55 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:00:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_enemies(t_data data, int width, int height)
 	if (cnt < data.enem_count)
 	{
 		mlx_image_to_window(data.mlx, data.enemies[cnt], width * 64, height
-				* 64);
+			* 64);
 		cnt++;
 	}
 }
@@ -87,7 +87,7 @@ void	ft_enemy_touch(t_data data)
 		{
 			ft_printf("You lose!\n");
 			ft_add_step(&data, &posx, &posy, 'w');
-			ft_close_window(&data);
+			exit(0);
 		}
 		cnt++;
 	}
