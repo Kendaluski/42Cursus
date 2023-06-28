@@ -73,7 +73,7 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		cnt = 0;
-		atexit(ft_leaks);
+		#atexit(ft_leaks);
 		data.mlx = 0;
 		data = ft_init_data(data);
 		file_read = ft_read_file(argv[1]);
