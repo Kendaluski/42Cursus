@@ -295,6 +295,6 @@ void			ft_add_coll(void *data);
  * @brief Checks if the program is leaking memory
  * 
  */
-void			ft_leaks(void);
+#void			ft_leaks(void);
 
 #endif
