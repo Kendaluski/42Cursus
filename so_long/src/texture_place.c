@@ -36,12 +36,12 @@ void	ft_exit_img(int height, int width, t_data data)
 	mlx_image_to_window(data.mlx, data.floor, width * 64, height * 64);
 	mlx_image_to_window(data.mlx, data.exit, width * 64, height * 64);
 }
-
+/*
 void	ft_leaks(void)
 {
 	system("leaks -q so_long");
 }
-
+*/
 void	ft_open_exit(t_data data)
 {
 	int		cnt;
