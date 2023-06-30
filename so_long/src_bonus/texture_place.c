@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:55:28 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/06 17:58:55 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:49:35 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ void	ft_exit_img(int height, int width, t_data data)
 	mlx_image_to_window(data.mlx, data.exit, width * 64, height * 64);
 }
 
+/*
 void	ft_leaks(void)
 {
 	system("leaks -q so_long");
 }
+*/
 
 void	ft_open_exit(t_data data)
 {

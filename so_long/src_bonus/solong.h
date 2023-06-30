@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/19 18:30:12 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:49:18 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,7 +325,7 @@ void			ft_enemy_touch(t_data data);
 /**
  * @brief Checks if the program is leaking memory
  * 
- */
-void			ft_leaks(void);
+
+void			ft_leaks(void);*/
 
 #endif

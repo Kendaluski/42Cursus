@@ -6,7 +6,7 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 17:21:06 by jjaen-mo          #+#    #+#              #
-#    Updated: 2023/06/22 22:05:22 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/06/30 14:44:44 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,21 +23,17 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-bonus: $(BONUS_OBJS)
+bonus: $(BONUS_OBJS) $(MLX42) $(LIBFT)
 	@gcc $(FLAGS) $(BONUS_OBJS) $(MLX42) $(LIBFT) -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L "/Users/jjaen-mo/.brew/opt/glfw/lib/" -o $(NAME)
-
-$(BONUS_OBJS): $(BONUS)
-	@mkdir -p src_bonus
-	@gcc -c $(BONUS) $(FLAGS)
-	@mv *.o src_bonus
 
 $(NAME): $(LIBFT) $(MLX42) $(OBJS)
 	@gcc $(FLAGS) $(OBJS) $(MLX42) $(LIBFT) -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L "/Users/jjaen-mo/.brew/opt/glfw/lib/" -o $(NAME)
 
-$(OBJS): $(SRCS)
-	@mkdir -p src
-	@gcc -c $(SRCS) $(FLAGS)
-	@mv *.o src
+src/%.o : src/%.c
+	gcc $(FLAGS) -c $< -o $@
+
+src_bonus/%.o : src_bonus/%.c
+	gcc $(FLAGS) -c $< -o $@
 
 $(MLX42):
 	make -C MLX42
@@ -56,4 +52,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re bonus

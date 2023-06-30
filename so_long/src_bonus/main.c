@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:47:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/19 17:59:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:46:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		cnt = 0;
-		atexit(ft_leaks);
 		data.mlx = 0;
 		data = ft_init_data(data);
 		file_read = ft_read_file(argv[1]);

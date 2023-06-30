@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:27:17 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/22 21:54:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:45:31 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,7 +294,7 @@ void			ft_add_coll(void *data);
 /**
  * @brief Checks if the program is leaking memory
  * 
- */
-#void			ft_leaks(void);
+
+void			ft_leaks(void);*/
 
 #endif
