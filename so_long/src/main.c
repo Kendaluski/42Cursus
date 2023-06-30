@@ -70,7 +70,6 @@ int	main(int argc, char *argv[])
 	char	*file_read;
 	t_data	data;
 
-	(void)argc;
 	if (argc == 2)
 	{
 		cnt = 0;
