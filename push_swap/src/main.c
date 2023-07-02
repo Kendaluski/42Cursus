@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/30 19:35:00 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:11:08 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,11 @@ int	main(int argc, char *argv[])
 	{
 		stack_a = NULL;
 		stack_a = ft_init_a(argc, argv, stack_a);
+		//stack_a = ft_ra(stack_a);
+		while(stack_a)
+		{
+			printf("%i\n", stack_a->content);
+			stack_a = stack_a->next;
+		}
 	}
 }
