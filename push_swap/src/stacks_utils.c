@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stacks.c                                      :+:      :+:    :+:   */
+/*   stacks_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/30 19:34:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:27:15 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,42 @@ t_list	*ft_init_a(int size, char **numbers, t_list *stack_a)
 		stack_a = stack_a->next;
 		cnt++;
 	}
-	stack_a->next = NULL;
+	stack_a->content = ft_atoi(numbers[cnt]);
+	stack_a->next = first;
 	return (first);
+}
+
+t_list	*ft_lstnlast(t_list *lst, int size)
+{
+	int cnt;
+
+	cnt = 0;
+	if (!lst)
+		return (0);
+	if (lst->next == NULL)
+		return (lst);
+	while (lst->next && cnt < size)
+	{
+		lst = lst->next;
+		cnt++;
+	}
+	return (lst);
+}
+
+void	ft_ss(t_list *stack_a, t_list *stack_b)
+{
+	stack_a = ft_sa(stack_a);
+	stack_b = ft_sa(stack_b);
+}
+
+void ft_rr(t_list *stack_a, t_list *stack_b, int size)
+{
+	stack_a = ft_ra(stack_a, size);
+	stack_b = ft_rb(stack_b, size);
+}
+
+void ft_rrr(t_list *stack_a, t_list *stack_b, int size)
+{
+	stack_a = ft_rra(stack_a, size);
+	stack_b = ft_rrb(stack_b, size);
 }
