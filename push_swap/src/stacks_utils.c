@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/03 12:27:15 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/05 21:20:16 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_list	*ft_init_a(int size, char **numbers, t_list *stack_a)
 {
-	int	cnt;
-	t_list *first;
+	int		cnt;
+	t_list	*first;
 
 	cnt = 1;
 	first = malloc(sizeof(t_list));
@@ -31,25 +31,8 @@ t_list	*ft_init_a(int size, char **numbers, t_list *stack_a)
 		cnt++;
 	}
 	stack_a->content = ft_atoi(numbers[cnt]);
-	stack_a->next = first;
+	stack_a->next = NULL;
 	return (first);
-}
-
-t_list	*ft_lstnlast(t_list *lst, int size)
-{
-	int cnt;
-
-	cnt = 0;
-	if (!lst)
-		return (0);
-	if (lst->next == NULL)
-		return (lst);
-	while (lst->next && cnt < size)
-	{
-		lst = lst->next;
-		cnt++;
-	}
-	return (lst);
 }
 
 void	ft_ss(t_list *stack_a, t_list *stack_b)
@@ -58,14 +41,14 @@ void	ft_ss(t_list *stack_a, t_list *stack_b)
 	stack_b = ft_sa(stack_b);
 }
 
-void ft_rr(t_list *stack_a, t_list *stack_b, int size)
+void	ft_rr(t_list *stack_a, t_list *stack_b)
 {
-	stack_a = ft_ra(stack_a, size);
-	stack_b = ft_rb(stack_b, size);
+	stack_a = ft_ra(stack_a);
+	stack_b = ft_rb(stack_b);
 }
 
-void ft_rrr(t_list *stack_a, t_list *stack_b, int size)
+void	ft_rrr(t_list *stack_a, t_list *stack_b)
 {
-	stack_a = ft_rra(stack_a, size);
-	stack_b = ft_rrb(stack_b, size);
+	stack_a = ft_rra(stack_a);
+	stack_b = ft_rrb(stack_b);
 }
