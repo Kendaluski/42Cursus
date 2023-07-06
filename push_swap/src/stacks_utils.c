@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/05 21:20:16 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:23:17 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,32 @@ void	ft_ss(t_list *stack_a, t_list *stack_b)
 {
 	stack_a = ft_sa(stack_a);
 	stack_b = ft_sa(stack_b);
+	ft_printf("ss\n");
 }
 
 void	ft_rr(t_list *stack_a, t_list *stack_b)
 {
 	stack_a = ft_ra(stack_a);
 	stack_b = ft_rb(stack_b);
+	ft_printf("rr\n");
 }
 
 void	ft_rrr(t_list *stack_a, t_list *stack_b)
 {
 	stack_a = ft_rra(stack_a);
 	stack_b = ft_rrb(stack_b);
+	ft_printf("rrr\n");
+}
+
+int ft_get_size(t_list *stack)
+{
+	int cnt;
+
+	cnt = 0;
+	while(stack)
+	{
+		cnt++;
+		stack = stack->next;
+	}
+	return (cnt);
 }
