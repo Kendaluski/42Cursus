@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 10:41:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/06 18:46:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:04:57 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ t_list	*ft_sa(t_list *stack_a)
 	return (stack_a);
 }
 
-t_list	*ft_pa(t_list *stack_a, t_list *stack_b)
+t_stack	ft_pa(t_stack stacks)
 {
 	t_list	*tmp;
 
-	if (!stack_b)
-		return (stack_a);
+	if (!stacks.stack_b)
+		return (stacks);
 	tmp = malloc(sizeof(t_list));
-	tmp->content = stack_b->content;
-	tmp->next = stack_a;
-	if(stack_b->next)
-		stack_b = stack_b->next;
+	tmp->content = stacks.stack_b->content;
+	tmp->next = stacks.stack_a;
+	if (stacks.stack_b->next)
+		stacks.stack_b = stacks.stack_b->next;
 	else
-		stack_b = NULL;
+		stacks.stack_b = NULL;
 	ft_printf("pa\n");
-	return (tmp);
+	stacks.stack_a = tmp;
+	return (stacks);
 }
 
 t_list	*ft_ra(t_list *stack_a)

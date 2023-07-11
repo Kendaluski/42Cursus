@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/06 18:23:17 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:34:25 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,36 @@ t_list	*ft_init_a(int size, char **numbers, t_list *stack_a)
 	return (first);
 }
 
-void	ft_ss(t_list *stack_a, t_list *stack_b)
+t_stack	ft_ss(t_stack stacks)
 {
-	stack_a = ft_sa(stack_a);
-	stack_b = ft_sa(stack_b);
+	stacks.stack_a = ft_sa(stacks.stack_a);
+	stacks.stack_b = ft_sa(stacks.stack_b);
 	ft_printf("ss\n");
+	return (stacks);
 }
 
-void	ft_rr(t_list *stack_a, t_list *stack_b)
+t_stack	ft_rr(t_stack stacks)
 {
-	stack_a = ft_ra(stack_a);
-	stack_b = ft_rb(stack_b);
+	stacks.stack_a = ft_ra(stacks.stack_a);
+	stacks.stack_b = ft_rb(stacks.stack_b);
 	ft_printf("rr\n");
+	return (stacks);
 }
 
-void	ft_rrr(t_list *stack_a, t_list *stack_b)
+t_stack	ft_rrr(t_stack stacks)
 {
-	stack_a = ft_rra(stack_a);
-	stack_b = ft_rrb(stack_b);
+	stacks.stack_a = ft_rra(stacks.stack_a);
+	stacks.stack_b = ft_rrb(stacks.stack_b);
 	ft_printf("rrr\n");
+	return (stacks);
 }
 
-int ft_get_size(t_list *stack)
+int	ft_get_size(t_list *stack)
 {
-	int cnt;
+	int	cnt;
 
 	cnt = 0;
-	while(stack)
+	while (stack)
 	{
 		cnt++;
 		stack = stack->next;
