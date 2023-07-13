@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/11 19:07:57 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:28:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ typedef struct s_stack
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		size;
 }			t_stack;
 
 t_list		*ft_init_a(int size, char **numbers, t_list *stack_a);
+void		ft_set_position(t_list **stack);
 t_list		*ft_sa(t_list *stack_a);
 t_stack		ft_pa(t_stack stacks);
 t_list		*ft_ra(t_list *stack_a);
