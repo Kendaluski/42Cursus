@@ -6,38 +6,38 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/13 17:37:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/17 20:10:08 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_get_min(t_list *stack)
+int	ft_get_min(t_stack *stack)
 {
-	int min;
+	int	min;
 
 	min = stack->content;
-	while(stack)
+	while (stack)
 	{
-		if(stack->content < min)
+		if (stack->content < min)
 			min = stack->content;
 		stack = stack->next;
 	}
 	return (min);
 }
 
-int ft_get_min_pos(t_list *stack, int min)
+int	ft_get_min_pos(t_stack *stack, int min)
 {
-	while(stack)
+	while (stack)
 	{
-		if(stack->content == min)
-			return(stack->pos);
+		if (stack->content == min)
+			return (stack->pos);
 		stack = stack->next;
 	}
 	return (stack->pos);
 }
 
-t_list	*ft_sort_three(t_list *stack_a)
+t_stack	*ft_sort_three(t_stack *stack_a)
 {
 	int	n;
 	int	m;
@@ -65,11 +65,11 @@ t_list	*ft_sort_three(t_list *stack_a)
 	return (stack_a);
 }
 
-t_stack	ft_sort(t_stack stacks)
+t_stacks	ft_sort(t_stacks stacks)
 {
-	int n;
-	int n_pos;
-	int cnt;
+	int	n;
+	int	n_pos;
+	int	cnt;
 
 	cnt = 1;
 	n = ft_get_min(stacks.stack_a);
@@ -85,14 +85,14 @@ t_stack	ft_sort(t_stack stacks)
 		}
 		else
 		{
-			if(n_pos >= stacks.size / 2)
+			if (n_pos >= stacks.size / 2)
 				stacks.stack_a = ft_rra(stacks.stack_a);
 			else
 				stacks.stack_a = ft_ra(stacks.stack_a);
 		}
 	}
 	ft_sort_three(stacks.stack_a);
-	while(stacks.stack_b->next)
+	while (stacks.stack_b->next)
 		stacks = ft_pa(stacks);
 	return (stacks);
 }

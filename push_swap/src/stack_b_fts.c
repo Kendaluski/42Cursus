@@ -6,13 +6,13 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:12:50 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/11 14:54:33 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:15:59 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_sb(t_list *stack_b)
+t_stack	*ft_sb(t_stack *stack_b)
 {
 	int	tmp;
 
@@ -25,13 +25,13 @@ t_list	*ft_sb(t_list *stack_b)
 	return (stack_b);
 }
 
-t_stack	ft_pb(t_stack stacks)
+t_stacks	ft_pb(t_stacks stacks)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	if (stacks.stack_a)
 	{
-		tmp = malloc(sizeof(t_list));
+		tmp = malloc(sizeof(t_stack));
 		tmp->content = stacks.stack_a->content;
 		tmp->next = stacks.stack_b;
 		if (stacks.stack_a->next)
@@ -44,10 +44,10 @@ t_stack	ft_pb(t_stack stacks)
 	return (stacks);
 }
 
-t_list	*ft_rb(t_list *stack_b)
+t_stack	*ft_rb(t_stack *stack_b)
 {
 	int		tmp;
-	t_list	*first;
+	t_stack	*first;
 
 	if (!stack_b || !stack_b->next)
 		return (stack_b);
@@ -67,10 +67,10 @@ t_list	*ft_rb(t_list *stack_b)
 	return (first);
 }
 
-t_list	*ft_rrb(t_list *stack_b)
+t_stack	*ft_rrb(t_stack *stack_b)
 {
-	t_list	*last;
-	t_list	*first;
+	t_stack	*last;
+	t_stack	*first;
 
 	if (!stack_b || !stack_b->next)
 		return (stack_b);

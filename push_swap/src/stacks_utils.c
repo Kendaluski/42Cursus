@@ -6,28 +6,28 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/13 16:20:33 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/17 20:09:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_init_a(int size, char **numbers, t_list *stack_a)
+t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
 {
 	int		cnt;
-	t_list	*first;
+	t_stack	*first;
 
 	cnt = 1;
-	first = malloc(sizeof(t_list));
+	first = malloc(sizeof(t_stack));
 	first->content = ft_atoi(numbers[cnt]);
 	first->pos = 0;
-	first->next = malloc(sizeof(t_list));
+	first->next = malloc(sizeof(t_stack));
 	stack_a = first->next;
 	cnt++;
 	while (cnt < size - 1)
 	{
 		stack_a->content = ft_atoi(numbers[cnt]);
-		stack_a->next = malloc(sizeof(t_list));
+		stack_a->next = malloc(sizeof(t_stack));
 		stack_a = stack_a->next;
 		cnt++;
 	}
@@ -36,7 +36,7 @@ t_list	*ft_init_a(int size, char **numbers, t_list *stack_a)
 	return (first);
 }
 
-t_stack	ft_ss(t_stack stacks)
+t_stacks	ft_ss(t_stacks stacks)
 {
 	stacks.stack_a = ft_sa(stacks.stack_a);
 	stacks.stack_b = ft_sa(stacks.stack_b);
@@ -44,7 +44,7 @@ t_stack	ft_ss(t_stack stacks)
 	return (stacks);
 }
 
-t_stack	ft_rr(t_stack stacks)
+t_stacks	ft_rr(t_stacks stacks)
 {
 	stacks.stack_a = ft_ra(stacks.stack_a);
 	stacks.stack_b = ft_rb(stacks.stack_b);
@@ -52,7 +52,7 @@ t_stack	ft_rr(t_stack stacks)
 	return (stacks);
 }
 
-t_stack	ft_rrr(t_stack stacks)
+t_stacks	ft_rrr(t_stacks stacks)
 {
 	stacks.stack_a = ft_rra(stacks.stack_a);
 	stacks.stack_b = ft_rrb(stacks.stack_b);
@@ -60,7 +60,7 @@ t_stack	ft_rrr(t_stack stacks)
 	return (stacks);
 }
 
-int	ft_get_size(t_list *stack)
+int	ft_get_size(t_stack *stack)
 {
 	int	cnt;
 

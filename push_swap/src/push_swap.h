@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/13 16:28:01 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:18:09 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,36 @@
 
 typedef struct s_stack
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
-	int		size;
-}			t_stack;
+	int				content;
+	int				pos;
+	struct s_stack	*next;
+}					t_stack;
 
-t_list		*ft_init_a(int size, char **numbers, t_list *stack_a);
-void		ft_set_position(t_list **stack);
-t_list		*ft_sa(t_list *stack_a);
-t_stack		ft_pa(t_stack stacks);
-t_list		*ft_ra(t_list *stack_a);
-t_list		*ft_rra(t_list *stack_a);
-t_list		*ft_sb(t_list *stack_a);
-t_stack		ft_pb(t_stack stacks);
-t_list		*ft_rb(t_list *stack_a);
-t_list		*ft_rrb(t_list *stack_a);
-t_stack		ft_ss(t_stack stacks);
-t_stack		ft_rr(t_stack stacks);
-t_stack		ft_rrr(t_stack stacks);
-t_list		*ft_sort_three(t_list *stack_a);
-t_stack		ft_sort(t_stack stacks);
-int			ft_get_size(t_list *stack);
+typedef struct s_stacks
+{
+	t_stack			*stack_a;
+	t_stack			*stack_b;
+	int				sizea;
+	int				sizeb;
+}					t_stacks;
+
+t_stack				*ft_init_a(int size, char **numbers, t_stack *stack_a);
+void				ft_set_position(t_stack **stack);
+t_stack				*ft_sa(t_stack *stack_a);
+t_stacks			ft_pa(t_stacks stacks);
+t_stack				*ft_ra(t_stack *stack_a);
+t_stack				*ft_rra(t_stack *stack_a);
+t_stack				*ft_sb(t_stack *stack_a);
+t_stacks			ft_pb(t_stacks stacks);
+t_stack				*ft_rb(t_stack *stack_a);
+t_stack				*ft_rrb(t_stack *stack_a);
+t_stacks			ft_ss(t_stacks stacks);
+t_stacks			ft_rr(t_stacks stacks);
+t_stacks			ft_rrr(t_stacks stacks);
+t_stack				*ft_sort_three(t_stack *stack_a);
+t_stacks			ft_sort(t_stacks stacks);
+t_stacks			ft_mid_point_sort(t_stacks stacks);
+int					ft_get_size(t_stack *stack);
+int					ft_get_min(t_stack *stack);
 
 #endif
