@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/17 20:10:08 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:04:25 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_stacks	ft_sort(t_stacks stacks)
 	cnt = 1;
 	n = ft_get_min(stacks.stack_a);
 	n_pos = ft_get_min_pos(stacks.stack_a, n);
-	while (cnt != stacks.size - 2)
+	while (cnt != stacks.sizea - 2)
 	{
 		if (stacks.stack_a->content <= n)
 		{
@@ -85,7 +85,7 @@ t_stacks	ft_sort(t_stacks stacks)
 		}
 		else
 		{
-			if (n_pos >= stacks.size / 2)
+			if (n_pos >= stacks.sizea / 2)
 				stacks.stack_a = ft_rra(stacks.stack_a);
 			else
 				stacks.stack_a = ft_ra(stacks.stack_a);

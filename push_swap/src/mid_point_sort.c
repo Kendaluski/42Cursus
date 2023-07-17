@@ -6,11 +6,40 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 20:18:36 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/17 21:25:27 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:35:41 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	*ft_prep_mids(int *array, int cnt)
+{
+	int	cnt2;
+	int	cnt3;
+	int	*mids;
+
+	cnt2 = 0;
+	cnt3 = 0;
+	while (cnt > -1)
+	{
+		while (array[cnt] == 0)
+			cnt--;
+		if (array[cnt] != 0)
+			cnt2++;
+		cnt--;
+	}
+	mids = malloc(sizeof(int) * (cnt2 - 4));
+	cnt++;
+	while (cnt < cnt2 - 4)
+	{
+		while (array[cnt3] == 0)
+			cnt3++;
+		mids[cnt] = array[cnt3];
+		cnt++;
+		cnt3++;
+	}
+	return (free(array), mids);
+}
 
 int	ft_sort_array(int *array)
 {
@@ -60,11 +89,16 @@ int	ft_get_mid(t_stack *stack_a)
 t_stacks	ft_mid_point_sort(t_stacks stacks)
 {
 	int	mid;
+	int	cnt;
 
+	mid = ft_get_mid(stacks.stack_a);
+	stacks.sizea = ft_get_size(stacks.stack_a);
+	stacks.mids = (int *)malloc(sizeof(int) * (stacks.sizea));
+	stacks.mids[0] = mid;
+	cnt = 1;
 	while (ft_get_size(stacks.stack_a) > 2)
 	{
 		stacks.sizea = ft_get_size(stacks.stack_a);
-		mid = ft_get_mid(stacks.stack_a);
 		while (ft_get_size(stacks.stack_a) != stacks.sizea / 2
 			&& ft_get_size(stacks.stack_a) > 2)
 		{
@@ -75,10 +109,38 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 			else
 				stacks.stack_a = ft_ra(stacks.stack_a);
 		}
+		mid = ft_get_mid(stacks.stack_a);
+		stacks.mids[cnt] = mid;
+		cnt++;
 	}
 	if (stacks.stack_a->content > stacks.stack_a->next->content)
 		stacks.stack_a = ft_sa(stacks.stack_a);
-	while (stacks.stack_b)
-		stacks = ft_pa(stacks);
+	stacks.mids = ft_prep_mids(stacks.mids, cnt);
+	cnt = 0;
+	while (stacks.mids[cnt] != 0)
+		cnt++;
+	while (ft_get_size(stacks.stack_b) > 2)
+	{
+		stacks.sizeb = ft_get_size(stacks.stack_b);
+		while (cnt > 0)
+		{
+			mid = stacks.mids[cnt];
+			while (ft_get_size(stacks.stack_b) != stacks.sizeb / 2
+				&& ft_get_size(stacks.stack_b) > 2)
+			{
+				ft_printf("%i\n", stacks.stack_b->content);
+				if (stacks.stack_b->content > mid)
+				{
+					stacks = ft_pa(stacks);
+				}
+				else
+					stacks.stack_b = ft_rb(stacks.stack_b);
+			}
+			cnt--;
+		}
+	}
+	if (stacks.stack_b->content < stacks.stack_b->next->content)
+		stacks.stack_b = ft_sb(stacks.stack_b);
+	stacks = ft_pa(stacks);
 	return (stacks);
 }
