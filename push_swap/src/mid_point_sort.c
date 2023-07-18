@@ -6,11 +6,25 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 20:18:36 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/17 16:35:41 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:40:58 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int ft_get_max(t_stack *stack)
+{
+	int	max;
+
+	max = stack->content;
+	while (stack)
+	{
+		if (stack->content > max)
+			max = stack->content;
+		stack = stack->next;
+	}
+	return (max);
+}
 
 int	*ft_prep_mids(int *array, int cnt)
 {
@@ -28,9 +42,9 @@ int	*ft_prep_mids(int *array, int cnt)
 			cnt2++;
 		cnt--;
 	}
-	mids = malloc(sizeof(int) * (cnt2 - 4));
+	mids = malloc(sizeof(int) * cnt2 - 3);
 	cnt++;
-	while (cnt < cnt2 - 4)
+	while (cnt < cnt2 - 3)
 	{
 		while (array[cnt3] == 0)
 			cnt3++;
@@ -89,6 +103,7 @@ int	ft_get_mid(t_stack *stack_a)
 t_stacks	ft_mid_point_sort(t_stacks stacks)
 {
 	int	mid;
+	int	mid2;
 	int	cnt;
 
 	mid = ft_get_mid(stacks.stack_a);
@@ -116,31 +131,40 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 	if (stacks.stack_a->content > stacks.stack_a->next->content)
 		stacks.stack_a = ft_sa(stacks.stack_a);
 	stacks.mids = ft_prep_mids(stacks.mids, cnt);
+	ft_set_position(&stacks.stack_b);
 	cnt = 0;
 	while (stacks.mids[cnt] != 0)
 		cnt++;
-	while (ft_get_size(stacks.stack_b) > 2)
+	cnt--;
+	while (cnt > 0)
 	{
-		stacks.sizeb = ft_get_size(stacks.stack_b);
-		while (cnt > 0)
+		mid = stacks.mids[cnt];
+		mid2 = stacks.mids[cnt - 1];
+		while (mid >= mid2)
 		{
-			mid = stacks.mids[cnt];
-			while (ft_get_size(stacks.stack_b) != stacks.sizeb / 2
-				&& ft_get_size(stacks.stack_b) > 2)
+			if (stacks.stack_b->content == mid)
 			{
-				ft_printf("%i\n", stacks.stack_b->content);
-				if (stacks.stack_b->content > mid)
-				{
-					stacks = ft_pa(stacks);
-				}
-				else
-					stacks.stack_b = ft_rb(stacks.stack_b);
+				stacks = ft_pa(stacks);
+				mid--;
 			}
-			cnt--;
+			else if (stacks.stack_b->pos >= ft_get_size(stacks.stack_b) / 2)
+				stacks.stack_b = ft_rrb(stacks.stack_b);
+			else
+				stacks.stack_b = ft_rb(stacks.stack_b);
 		}
+		cnt--;
 	}
-	if (stacks.stack_b->content < stacks.stack_b->next->content)
-		stacks.stack_b = ft_sb(stacks.stack_b);
-	stacks = ft_pa(stacks);
+	while(stacks.stack_b && mid != 0)
+	{
+		mid = ft_get_max(stacks.stack_b);
+		stacks.sizeb = ft_get_size(stacks.stack_b);
+		if (stacks.stack_b->content == mid)
+				stacks = ft_pa(stacks);
+		else if (stacks.stack_b->pos >= stacks.sizeb / 2)
+			stacks.stack_b = ft_rrb(stacks.stack_b);
+		else
+			stacks.stack_b = ft_rb(stacks.stack_b);
+	}
+	stacks.stack_a = stacks.stack_a->next;
 	return (stacks);
 }

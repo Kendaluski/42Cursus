@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/17 15:33:07 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:57:34 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_stacks
 	int				*mids;
 	int				sizea;
 	int				sizeb;
+	int				chdiff;
 }					t_stacks;
 
 t_stack				*ft_init_a(int size, char **numbers, t_stack *stack_a);
