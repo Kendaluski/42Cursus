@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/18 16:41:17 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:16:38 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_set_position(t_stack **stack)
 	tmp = *stack;
 	while (tmp)
 	{
-		tmp->pos = cnt;
+		tmp->indx = cnt;
 		cnt++;
 		tmp = tmp->next;
 	}
@@ -44,10 +44,11 @@ int	main(int argc, char *argv[])
 			stacks.stack_a = ft_sort_three(stacks.stack_a);
 		else
 			stacks = ft_mid_point_sort(stacks);
+		ft_set_position(&stacks.stack_a);
 		// while (stacks.stack_a)
 		// {
 		// 	ft_printf("Content: %i Position: %i \n", stacks.stack_a->content,
-		// 			stacks.stack_a->pos);
+		// 			stacks.stack_a->indx);
 		// 	stacks.stack_a = stacks.stack_a->next;
 		// }
 	}

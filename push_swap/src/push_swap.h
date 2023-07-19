@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/18 15:57:34 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:12:55 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef struct s_stack
 {
 	int				content;
-	int				pos;
+	int				indx;
 	struct s_stack	*next;
 }					t_stack;
 

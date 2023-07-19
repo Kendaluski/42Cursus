@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 10:41:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/17 20:09:14 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:12:46 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_stack	*ft_sa(t_stack *stack_a)
 	tmp = stack_a->content;
 	stack_a->content = stack_a->next->content;
 	stack_a->next->content = tmp;
-	ft_set_position(&stack_a);
 	ft_printf("sa\n");
 	return (stack_a);
 }
@@ -41,7 +40,6 @@ t_stacks	ft_pa(t_stacks stacks)
 		stacks.stack_b = NULL;
 	ft_printf("pa\n");
 	stacks.stack_a = tmp;
-	ft_set_position(&stacks.stack_a);
 	return (stacks);
 }
 
@@ -64,7 +62,6 @@ t_stack	*ft_ra(t_stack *stack_a)
 	tmp = first->content;
 	first->content = stack_a->content;
 	stack_a->content = tmp;
-	ft_set_position(&first);
 	ft_printf("ra\n");
 	return (first);
 }
@@ -82,7 +79,6 @@ t_stack	*ft_rra(t_stack *stack_a)
 	last = stack_a->next;
 	stack_a->next = NULL;
 	last->next = first;
-	ft_set_position(&last);
 	ft_printf("rra\n");
 	return (last);
 }

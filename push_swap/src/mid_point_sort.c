@@ -6,13 +6,38 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 20:18:36 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/18 16:40:58 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:20:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_get_max(t_stack *stack)
+int ft_check_midmax(t_stack *stack, int mid, int min)
+{
+	if (min == -1)
+	{
+		while(stack)
+		{
+			if(stack->content < mid)
+				return (1);
+			stack = stack->next;
+		}
+		return (0);
+	}
+	else
+	{
+		while(stack)
+		{
+			if(stack->content > mid)
+				return (1);
+			stack = stack->next;
+		}
+		return (0);
+	}
+	return (0);
+}
+
+int	ft_get_max(t_stack *stack)
 {
 	int	max;
 
@@ -111,15 +136,15 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 	stacks.mids = (int *)malloc(sizeof(int) * (stacks.sizea));
 	stacks.mids[0] = mid;
 	cnt = 1;
+	ft_set_position(&stacks.stack_a);
 	while (ft_get_size(stacks.stack_a) > 2)
 	{
 		stacks.sizea = ft_get_size(stacks.stack_a);
-		while (ft_get_size(stacks.stack_a) != stacks.sizea / 2
-			&& ft_get_size(stacks.stack_a) > 2)
+		while (ft_check_midmax(stacks.stack_a, mid, -1))
 		{
 			if (stacks.stack_a->content < mid)
 				stacks = ft_pb(stacks);
-			else if (stacks.stack_a->pos >= stacks.sizea / 2)
+			else if (stacks.stack_a->indx > stacks.sizea / 2)
 				stacks.stack_a = ft_rra(stacks.stack_a);
 			else
 				stacks.stack_a = ft_ra(stacks.stack_a);
@@ -136,7 +161,7 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 	while (stacks.mids[cnt] != 0)
 		cnt++;
 	cnt--;
-	while (cnt > 0)
+	while (ft_check_midmax(stacks.stack_b, mid, 1))
 	{
 		mid = stacks.mids[cnt];
 		mid2 = stacks.mids[cnt - 1];
@@ -147,20 +172,21 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 				stacks = ft_pa(stacks);
 				mid--;
 			}
-			else if (stacks.stack_b->pos >= ft_get_size(stacks.stack_b) / 2)
+			else if (stacks.stack_b->indx > ft_get_size(stacks.stack_b) / 2)
 				stacks.stack_b = ft_rrb(stacks.stack_b);
 			else
 				stacks.stack_b = ft_rb(stacks.stack_b);
 		}
 		cnt--;
 	}
-	while(stacks.stack_b && mid != 0)
+	ft_set_position(&stacks.stack_b);
+	while (stacks.stack_b && mid != 0)
 	{
 		mid = ft_get_max(stacks.stack_b);
 		stacks.sizeb = ft_get_size(stacks.stack_b);
 		if (stacks.stack_b->content == mid)
-				stacks = ft_pa(stacks);
-		else if (stacks.stack_b->pos >= stacks.sizeb / 2)
+			stacks = ft_pa(stacks);
+		else if (stacks.stack_b->indx >= stacks.sizeb / 2)
 			stacks.stack_b = ft_rrb(stacks.stack_b);
 		else
 			stacks.stack_b = ft_rb(stacks.stack_b);
