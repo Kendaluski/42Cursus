@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/19 19:12:55 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:08:19 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ t_stacks			ft_sort(t_stacks stacks);
 t_stacks			ft_mid_point_sort(t_stacks stacks);
 int					ft_get_size(t_stack *stack);
 int					ft_get_min(t_stack *stack);
+t_stack				*ft_arg_str(char *str);
 
 #endif

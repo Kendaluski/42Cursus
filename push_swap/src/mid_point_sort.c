@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 20:18:36 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/19 19:20:13 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:34:22 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,12 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 	stacks.mids[0] = mid;
 	cnt = 1;
 	ft_set_position(&stacks.stack_a);
-	while (ft_get_size(stacks.stack_a) > 2)
+	while (ft_get_size(stacks.stack_a) > 3)
 	{
-		stacks.sizea = ft_get_size(stacks.stack_a);
-		while (ft_check_midmax(stacks.stack_a, mid, -1))
+		while (ft_get_size(stacks.stack_a) > 3)
 		{
+			if(!ft_check_midmax(stacks.stack_a, mid, -1))
+				break ;
 			if (stacks.stack_a->content < mid)
 				stacks = ft_pb(stacks);
 			else if (stacks.stack_a->indx > stacks.sizea / 2)
@@ -153,8 +154,7 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 		stacks.mids[cnt] = mid;
 		cnt++;
 	}
-	if (stacks.stack_a->content > stacks.stack_a->next->content)
-		stacks.stack_a = ft_sa(stacks.stack_a);
+	stacks.stack_a = ft_sort_three(stacks.stack_a);
 	stacks.mids = ft_prep_mids(stacks.mids, cnt);
 	ft_set_position(&stacks.stack_b);
 	cnt = 0;
@@ -172,7 +172,7 @@ t_stacks	ft_mid_point_sort(t_stacks stacks)
 				stacks = ft_pa(stacks);
 				mid--;
 			}
-			else if (stacks.stack_b->indx > ft_get_size(stacks.stack_b) / 2)
+			else if (stacks.stack_b->indx >= ft_get_size(stacks.stack_b) / 2)
 				stacks.stack_b = ft_rrb(stacks.stack_b);
 			else
 				stacks.stack_b = ft_rb(stacks.stack_b);

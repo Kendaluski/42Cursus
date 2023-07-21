@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/17 15:04:25 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:24:24 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	ft_get_min_pos(t_stack *stack, int min)
 	while (stack)
 	{
 		if (stack->content == min)
-			return (stack->pos);
+			return (stack->indx);
 		stack = stack->next;
 	}
-	return (stack->pos);
+	return (stack->indx);
 }
 
 t_stack	*ft_sort_three(t_stack *stack_a)

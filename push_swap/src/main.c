@@ -6,11 +6,37 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/07/19 19:16:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:20:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack	*ft_arg_str(char *str)
+{
+	int		cnt;
+	char	**numbers;
+	t_stack	*stack_a;
+	t_stack *first;
+
+	cnt = 1;
+	numbers = ft_split(str, ' ');
+	stack_a = malloc(sizeof(t_stack));
+	first = malloc(sizeof(t_stack));
+	first = stack_a;
+	stack_a->content = ft_atoi(numbers[0]);
+	stack_a->next = malloc(sizeof(t_stack));
+	stack_a = stack_a->next;
+	while (numbers[cnt + 1])
+	{
+		stack_a->content = ft_atoi(numbers[cnt]);
+		stack_a->next = malloc(sizeof(t_stack));
+		stack_a = stack_a->next;
+		cnt++;
+	}
+	stack_a->content = ft_atoi(numbers[cnt]);
+	return (first);
+}
 
 void	ft_set_position(t_stack **stack)
 {
