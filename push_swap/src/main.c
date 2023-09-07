@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/04 18:54:34 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/07 06:02:20 by alcarden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_set_position(t_stack **stack)
 	int		cnt;
 	t_stack	*tmp;
 
-	cnt = 0;
+	cnt = 1;
 	tmp = *stack;
 	while (tmp)
 	{
@@ -71,11 +71,11 @@ int	main(int argc, char *argv[])
 		else
 			stacks = ft_sort(stacks);
 		ft_set_position(&stacks.stack_a);
-		// while (stacks.stack_a)
-		// {
-		// 	ft_printf("Content: %i Position: %i \n", stacks.stack_a->content,
-		// 			stacks.stack_a->act_pos);
-		// 	stacks.stack_a = stacks.stack_a->next;
-		// }
+		while (stacks.stack_a)
+		{
+			ft_printf("Content: %i Position: %i \n", stacks.stack_a->content,
+					stacks.stack_a->act_pos);
+			stacks.stack_a = stacks.stack_a->next;
+		}
 	}
 }
