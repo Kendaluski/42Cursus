@@ -6,95 +6,132 @@
 /*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/07 06:09:33 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/09 09:06:01 by alcarden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stacks ft_move_up(t_stacks stacks, int nb)
+int	ft_pos(int n)
 {
-	t_stack *tmp;
+	if (n < 0)
+		return (n * -1);
+	else
+		return (n);
+}
 
-	tmp = stacks.stack_b;
-	while(tmp && tmp->content != nb)
-		tmp = tmp->next;
-	while(stacks.stack_b->content != tmp->content)
+t_stack	*ft_cheapest(t_stack *stack_b)
+{
+	t_stack	*tmp;
+	t_stack	*cheapest;
+
+	tmp = stack_b;
+	cheapest = tmp;
+	while (tmp->next)
 	{
-		if(tmp->act_pos <= ft_get_size(stacks.stack_b))
-			ft_rrb(stacks.stack_b);
-		else
-			ft_rb(stacks.stack_b);
+		if (ft_pos(tmp->cost_a) + ft_pos(tmp->cost_b) < ft_pos(cheapest->cost_a)
+			+ ft_pos(cheapest->cost_b))
+			cheapest = tmp;
+		tmp = tmp->next;
 	}
-	ft_printf("Bup: %i NB: %i\n", stacks.stack_b->content, nb);
-	if(stacks.stack_b->content == nb)
-		stacks = ft_pb(stacks);
+	return (cheapest);
+}
+
+t_stacks	ft_move_up(t_stacks stacks, t_stack *cheapest)
+{
+	if (cheapest->cost_a == 0 && cheapest->cost_b == 0)
+		stacks = ft_pa(stacks);
+	else if (cheapest->cost_a < 0 && cheapest->cost_b < 0)
+		stacks = ft_rrr(stacks);
+	else if (cheapest->cost_a > 0 && cheapest->cost_b > 0)
+		stacks = ft_rr(stacks);
+	else if (cheapest->cost_a < 0)
+		stacks.stack_a = ft_rra(stacks.stack_a);
+	else if (cheapest->cost_a > 0)
+		stacks.stack_a = ft_ra(stacks.stack_a);
+	else if (cheapest->cost_b < 0)
+		stacks.stack_b = ft_rrb(stacks.stack_b);
+	else if (cheapest->cost_b > 0)
+		stacks.stack_b = ft_rb(stacks.stack_b);
 	return (stacks);
 }
 
-int	ft_calculate_cost(t_stack *stack_a, t_stack *stack_b)
+t_stacks	ft_calculate_cost(t_stacks stacks)
 {
 	t_stack	*tmp;
-	int		cost_b;
-	int		cost;
 
-	cost_b = stack_b->act_pos;
-	tmp = stack_a;
-	if(stack_a->content > stack_b->content)
-	{
-		cost = cost_b;
-		return (cost);
-	}
+	tmp = stacks.stack_b;
 	while (tmp->next)
 	{
-		if (stack_b->content > tmp->content
-			&& stack_b->content < tmp->next->content)
-			cost = cost_b + tmp->next->act_pos;
+		tmp->cost_b = tmp->act_pos;
+		if (tmp->act_pos > ft_get_size(stacks.stack_b) / 2)
+			tmp->cost_b = (ft_get_size(stacks.stack_b) - tmp->act_pos) * -1;
+		tmp->cost_a = tmp->targ_pos;
+		if (tmp->targ_pos > ft_get_size(stacks.stack_a) / 2)
+			tmp->cost_a = (ft_get_size(stacks.stack_a) - tmp->targ_pos) * -1;
 		tmp = tmp->next;
 	}
-	if (stack_b->content > tmp->content)
-		cost = cost_b + tmp->act_pos;
-	return (cost);
+	return (stacks);
+}
+t_stack	*ft_calculate_cost2(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*first;
+
+	first = stack_b;
+	while (stack_b->next)
+	{
+		stack_b->cost_b = stack_b->act_pos;
+		if (stack_b->act_pos > ft_get_size(stack_b) / 2)
+			stack_b->cost_b = (ft_get_size(stack_b) - stack_b->act_pos) * -1;
+		if (stack_b->targ_pos > ft_get_size(stack_a) / 2)
+			stack_b->cost_a = (ft_get_size(stack_a) - stack_b->targ_pos) * -1;
+		stack_b = stack_b->next;
+	}
+	return (first);
 }
 
-int	ft_get_pos(t_stack *stack_a, int num)
+int	ft_get_pos(t_stack *stack_a, int num, int target, int maxint)
 {
 	t_stack	*tmp;
 
 	tmp = stack_a;
 	while (tmp->next)
 	{
-		if (num < tmp->content)
-			return (tmp->act_pos);
+		if (num < tmp->content && tmp->content < maxint)
+		{
+			maxint = tmp->content;
+			target = tmp->act_pos;
+		}
 		tmp = tmp->next;
 	}
-	if (tmp->content > num)
-		return (tmp->act_pos);
-	else
-		return (tmp->act_pos + 1);
-	return (-1);
+	if (maxint != 2147483647)
+		return (target);
+	tmp = stack_a;
+	while(tmp->next)
+	{
+		if(tmp->content < maxint)
+		{
+			maxint = tmp->content;
+			target = tmp->act_pos;
+		}
+		tmp = tmp->next;
+	}
+	return (target);
 }
 
 t_stacks	ft_set_target(t_stacks stacks)
 {
 	t_stack	*tmp;
-	int min_cost;
-	int min_cont;
+	int		target;
 
+	target = 0;
 	tmp = stacks.stack_b;
-	min_cost = ft_calculate_cost(stacks.stack_a, tmp);
-	min_cont = tmp->content;
-	while (tmp->next)
+	while (tmp)
 	{
-		tmp->targ_pos = ft_get_pos(stacks.stack_a, tmp->content);
-		if(min_cost > ft_calculate_cost(stacks.stack_a, tmp))
-		{
-			min_cost = ft_calculate_cost(stacks.stack_a, tmp);
-			min_cont = tmp->content;
-		}
+		target = ft_get_pos(stacks.stack_a, tmp->content, target, 2147483647);
+		tmp->targ_pos = target;
 		tmp = tmp->next;
 	}
-	stacks.min_cont = min_cont;
 	return (stacks);
 }
 
@@ -126,16 +163,41 @@ t_stack	*ft_sort_three(t_stack *stack_a)
 	return (stack_a);
 }
 
+int ft_is_sort(t_stack *stack)
+{
+	t_stack *tmp;
+
+	tmp = stack;
+	while(tmp)
+	{
+		if(tmp->next && tmp->content > tmp->next->content)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 t_stacks	ft_sort(t_stacks stacks)
 {
 	ft_set_position(&stacks.stack_a);
+	stacks.sizea = ft_get_size(stacks.stack_a);
 	while (ft_get_size(stacks.stack_a) > 3)
 		stacks = ft_pb(stacks);
+	stacks.sizeb = ft_get_size(stacks.stack_b);
 	stacks.stack_a = ft_sort_three(stacks.stack_a);
-	while(stacks.stack_b->next)
+	while (stacks.stack_b->next)
 	{
 		stacks = ft_set_target(stacks);
-		stacks = ft_move_up(stacks, stacks.min_cont);
+		stacks = ft_calculate_cost(stacks);
+		stacks = ft_move_up(stacks, ft_cheapest(stacks.stack_b));
+	}
+	stacks.sizea = ft_get_size(stacks.stack_a);
+	while(!ft_is_sort(stacks.stack_a))
+	{
+		if(stacks.stack_a->content > stacks.sizea / 2)
+			stacks.stack_a = ft_ra(stacks.stack_a);
+		else
+			stacks.stack_a = ft_rra(stacks.stack_a);
 	}
 	return (stacks);
 }

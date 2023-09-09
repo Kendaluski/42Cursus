@@ -6,7 +6,7 @@
 /*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/07 06:02:20 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/09 09:07:32 by alcarden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack	*ft_arg_str(char *str)
 	int		cnt;
 	char	**numbers;
 	t_stack	*stack_a;
-	t_stack *first;
+	t_stack	*first;
 
 	cnt = 1;
 	numbers = ft_split(str, ' ');
@@ -43,7 +43,7 @@ void	ft_set_position(t_stack **stack)
 	int		cnt;
 	t_stack	*tmp;
 
-	cnt = 1;
+	cnt = 0;
 	tmp = *stack;
 	while (tmp)
 	{
@@ -71,11 +71,5 @@ int	main(int argc, char *argv[])
 		else
 			stacks = ft_sort(stacks);
 		ft_set_position(&stacks.stack_a);
-		while (stacks.stack_a)
-		{
-			ft_printf("Content: %i Position: %i \n", stacks.stack_a->content,
-					stacks.stack_a->act_pos);
-			stacks.stack_a = stacks.stack_a->next;
-		}
 	}
 }

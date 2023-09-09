@@ -6,7 +6,7 @@
 /*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/07 06:07:59 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/09 08:19:01 by alcarden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef struct s_stack
 	int				content;
 	int				act_pos;
 	int				targ_pos;
+	int				cost_a;
+	int				cost_b;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -28,7 +30,6 @@ typedef struct s_stacks
 	t_stack			*stack_b;
 	int				sizea;
 	int				sizeb;
-	int				min_cont;
 }					t_stacks;
 
 /**
@@ -154,6 +155,8 @@ int					ft_get_size(t_stack *stack);
  * @param stack_b
  * @return int
  */
-int					ft_calculate_cost(t_stack *stack_a, t_stack *stack_b);
+t_stacks			ft_calculate_cost(t_stacks stacks);
+
+t_stacks			ft_move_up(t_stacks stacks, t_stack *cheapest);
 
 #endif
