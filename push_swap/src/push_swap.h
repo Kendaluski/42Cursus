@@ -6,7 +6,7 @@
 /*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/09 08:19:01 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/10 10:31:08 by alcarden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,13 @@ t_stacks			ft_sort(t_stacks stacks);
  * @return int The size of the stack
  */
 int					ft_get_size(t_stack *stack);
+/**
+ * @brief Sets the target position for each element of stack b
+ *
+ * @param stacks The stacks structure
+ * @return t_stacks The stacks structure with the target positions set
+ */
+t_stacks			ft_set_target(t_stacks stacks);
 
 /**
 
@@ -157,6 +164,37 @@ int					ft_get_size(t_stack *stack);
  */
 t_stacks			ft_calculate_cost(t_stacks stacks);
 
+/**
+ * @brief Decides what move is needed to send the cheapest node of b to a
+ *
+ * @param stacks The stacks structure
+ * @param cheapest The node with the lower cost in b
+ * @return t_stacks
+ */
 t_stacks			ft_move_up(t_stacks stacks, t_stack *cheapest);
+
+/**
+ * @brief Returns the node with the lower cost in b
+ *
+ * @param stack_b The stack b
+ * @return t_stack* The node with the lower cost
+ */
+t_stack				*ft_cheapest(t_stack *stack_b);
+
+/**
+ * @brief Changes N to positive. This ft is needed for comparing costs
+ *
+ * @param n The number (cost)
+ * @return int The number (cost) positive
+ */
+int					ft_pos(int n);
+
+/**
+ * @brief Checks if the stack is sorted
+ *
+ * @param stack The stack to check
+ * @return int A boolean value
+ */
+int					ft_is_sort(t_stack *stack);
 
 #endif
