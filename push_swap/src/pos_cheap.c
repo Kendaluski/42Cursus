@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 10:23:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 16:57:22 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:53:24 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_stack	*ft_cheapest(t_stack *stack_b)
 
 	tmp = stack_b;
 	cheapest = tmp;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (ft_pos(tmp->cost_a) + ft_pos(tmp->cost_b) < ft_pos(cheapest->cost_a)
 			+ ft_pos(cheapest->cost_b))

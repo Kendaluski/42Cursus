@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 16:09:44 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:02:02 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				ft_set_position(t_stack **stack);
  * @param stack_a The stack a
  * @return t_stack* The stack a with the first two elements switched
  */
-t_stack				*ft_sa(t_stack *stack_a);
+t_stack				*ft_sa(t_stack *stack_a, int flag);
 /**
  * @brief Pushes the first element of a to the top of b
  *
@@ -67,21 +67,21 @@ t_stacks			ft_pa(t_stacks stacks);
  * @param stack_a The stack a
  * @return t_stack* The stack a rotated
  */
-t_stack				*ft_ra(t_stack *stack_a);
+t_stack				*ft_ra(t_stack *stack_a, int flag);
 /**
  * @brief Rotates a inversely
  *
  * @param stack_a The stack a
  * @return t_stack* The stack a inversely rotated
  */
-t_stack				*ft_rra(t_stack *stack_a);
+t_stack				*ft_rra(t_stack *stack_a, int flag);
 /**
  * @brief Switches the two first elements of b
  *
  * @param stack_b The stack b
  * @return t_stack* The stack b with the first two elements switched
  */
-t_stack				*ft_sb(t_stack *stack_b);
+t_stack				*ft_sb(t_stack *stack_b, int flag);
 /**
  * @brief Pushes the first element of b to the top of a
  *
@@ -95,14 +95,14 @@ t_stacks			ft_pb(t_stacks stacks);
  * @param stack_b The stack b
  * @return t_stack* The stack b rotated
  */
-t_stack				*ft_rb(t_stack *stack_b);
+t_stack				*ft_rb(t_stack *stack_b, int flag);
 /**
  * @brief Rotates b inversely
  *
  * @param stack_b The stack b
  * @return t_stack* The stack b inversely rotated
  */
-t_stack				*ft_rrb(t_stack *stack_b);
+t_stack				*ft_rrb(t_stack *stack_b, int flag);
 /**
  * @brief Switches the first two elements of a and b
  *

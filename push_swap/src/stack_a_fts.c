@@ -6,13 +6,13 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 10:41:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 16:45:56 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:02:11 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_sa(t_stack *stack_a)
+t_stack	*ft_sa(t_stack *stack_a, int flag)
 {
 	int	tmp;
 
@@ -21,7 +21,8 @@ t_stack	*ft_sa(t_stack *stack_a)
 	tmp = stack_a->content;
 	stack_a->content = stack_a->next->content;
 	stack_a->next->content = tmp;
-	ft_printf("sa\n");
+	if(flag)
+		ft_printf("sa\n");
 	ft_set_position(&stack_a);
 	return (stack_a);
 }
@@ -46,7 +47,7 @@ t_stacks	ft_pa(t_stacks stacks)
 	return (stacks);
 }
 
-t_stack	*ft_ra(t_stack *stack_a)
+t_stack	*ft_ra(t_stack *stack_a, int flag)
 {
 	int		tmp;
 	t_stack	*first;
@@ -65,12 +66,13 @@ t_stack	*ft_ra(t_stack *stack_a)
 	tmp = first->content;
 	first->content = stack_a->content;
 	stack_a->content = tmp;
-	ft_printf("ra\n");
+	if(flag)
+		ft_printf("ra\n");
 	ft_set_position(&first);
 	return (first);
 }
 
-t_stack	*ft_rra(t_stack *stack_a)
+t_stack	*ft_rra(t_stack *stack_a, int flag)
 {
 	t_stack	*last;
 	t_stack	*first;
@@ -83,7 +85,8 @@ t_stack	*ft_rra(t_stack *stack_a)
 	last = stack_a->next;
 	stack_a->next = NULL;
 	last->next = first;
-	ft_printf("rra\n");
+	if(flag)
+		ft_printf("rra\n");
 	ft_set_position(&last);
 	return (last);
 }

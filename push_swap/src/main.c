@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 16:43:05 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:58:31 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ int	main(int argc, char *argv[])
 		else
 			stacks = ft_sort(stacks);
 		ft_set_position(&stacks.stack_a);
-		ft_print_list(stacks.stack_b);
 	}
 }
