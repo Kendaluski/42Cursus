@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stacks_sorting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/10 10:31:16 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:56:53 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,18 @@
 t_stacks	ft_move_up(t_stacks stacks, t_stack *cheapest)
 {
 	if (cheapest->cost_a == 0 && cheapest->cost_b == 0)
+	{
 		stacks = ft_pa(stacks);
+		while (!ft_is_sort(stacks.stack_a))
+		{
+			stacks.sizea = ft_get_size(stacks.stack_a);
+			if (stacks.stack_a->act_pos > stacks.sizea / 2)
+				stacks.stack_a = ft_ra(stacks.stack_a);
+			else
+				stacks.stack_a = ft_rra(stacks.stack_a);
+		}
+		return (stacks);
+	}
 	else if (cheapest->cost_a < 0 && cheapest->cost_b < 0)
 		stacks = ft_rrr(stacks);
 	else if (cheapest->cost_a > 0 && cheapest->cost_b > 0)
@@ -36,7 +47,7 @@ int	ft_get_pos(t_stack *stack_a, int num, int target, int maxint)
 	t_stack	*tmp;
 
 	tmp = stack_a;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (num < tmp->content && tmp->content < maxint)
 		{
@@ -48,7 +59,7 @@ int	ft_get_pos(t_stack *stack_a, int num, int target, int maxint)
 	if (maxint != 2147483647)
 		return (target);
 	tmp = stack_a;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (tmp->content < maxint)
 		{
@@ -67,7 +78,7 @@ t_stacks	ft_set_target(t_stacks stacks)
 
 	target = 0;
 	tmp = stacks.stack_b;
-	while (tmp)
+	while (tmp->next)
 	{
 		target = ft_get_pos(stacks.stack_a, tmp->content, target, 2147483647);
 		tmp->targ_pos = target;
@@ -112,19 +123,11 @@ t_stacks	ft_sort(t_stacks stacks)
 		stacks = ft_pb(stacks);
 	stacks.sizeb = ft_get_size(stacks.stack_b);
 	stacks.stack_a = ft_sort_three(stacks.stack_a);
-	while (stacks.stack_b->next)
+	while (stacks.stack_b)
 	{
 		stacks = ft_set_target(stacks);
 		stacks = ft_calculate_cost(stacks);
 		stacks = ft_move_up(stacks, ft_cheapest(stacks.stack_b));
-	}
-	stacks.sizea = ft_get_size(stacks.stack_a);
-	while (!ft_is_sort(stacks.stack_a))
-	{
-		if (stacks.stack_a->content > stacks.sizea / 2)
-			stacks.stack_a = ft_ra(stacks.stack_a);
-		else
-			stacks.stack_a = ft_rra(stacks.stack_a);
 	}
 	return (stacks);
 }

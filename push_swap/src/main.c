@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/10 10:31:13 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:43:05 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,19 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		stacks.stack_a = malloc(sizeof(t_stack));
-		stacks.stack_b = malloc(sizeof(t_stack));
-		if (!stacks.stack_b)
+		stacks.stack_b = NULL;
+		if (!stacks.stack_a)
 			return (0);
 		stacks.stack_a = ft_init_a(argc, argv, stacks.stack_a);
 		ft_set_position(&stacks.stack_a);
 		stacks.sizea = argc - 1;
+		if (ft_is_sort(stacks.stack_a))
+			return (0);
 		if (stacks.sizea == 3)
 			stacks.stack_a = ft_sort_three(stacks.stack_a);
 		else
 			stacks = ft_sort(stacks);
 		ft_set_position(&stacks.stack_a);
+		ft_print_list(stacks.stack_b);
 	}
 }

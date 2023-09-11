@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pos&cheap.c                                        :+:      :+:    :+:   */
+/*   pos_cheap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcarden <alcarden@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 10:23:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/10 10:31:10 by alcarden         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:57:22 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_stacks	ft_calculate_cost(t_stacks stacks)
 	t_stack *tmp;
 
 	tmp = stacks.stack_b;
-	while (tmp->next)
+	while (tmp)
 	{
 		tmp->cost_b = tmp->act_pos;
 		if (tmp->act_pos > ft_get_size(stacks.stack_b) / 2)

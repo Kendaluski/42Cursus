@@ -6,11 +6,23 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/04 19:14:24 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:09:35 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void ft_print_list(t_stack *stack)
+{
+	t_stack *tmp;
+
+	tmp = stack;
+	while(tmp)
+	{
+		ft_printf("Content: %i Act_pos: %i Targ_pos: %i Cost_a: %i Cost_b: %i\n", tmp->content, tmp->act_pos, tmp->targ_pos, tmp->cost_a, tmp->cost_b);
+		tmp = tmp->next;
+	}
+}
 
 t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
 {
