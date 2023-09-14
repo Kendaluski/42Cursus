@@ -6,23 +6,11 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 20:08:01 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:39:24 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void ft_print_list(t_stack *stack)
-{
-	t_stack *tmp;
-
-	tmp = stack;
-	while(tmp)
-	{
-		ft_printf("Content: %i Act_pos: %i Targ_pos: %i Cost_a: %i Cost_b: %i\n", tmp->content, tmp->act_pos, tmp->targ_pos, tmp->cost_a, tmp->cost_b);
-		tmp = tmp->next;
-	}
-}
 
 t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
 {
@@ -30,7 +18,7 @@ t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
 	t_stack	*first;
 
 	cnt = 1;
-	if(size == 2)
+	if (size == 2)
 		return (NULL);
 	first = malloc(sizeof(t_stack));
 	first->content = ft_atol(numbers[cnt]);
@@ -80,12 +68,12 @@ t_stacks	ft_rrr(t_stacks stacks)
 	return (stacks);
 }
 
-int ft_get_size(t_stack *stack)
+int	ft_get_size(t_stack *stack)
 {
-	int cnt;
+	int	cnt;
 
 	cnt = 0;
-	while(stack)
+	while (stack)
 	{
 		cnt++;
 		stack = stack->next;

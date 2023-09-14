@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 20:08:46 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:38:33 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,16 @@ int	main(int argc, char *argv[])
 {
 	t_stacks	stacks;
 
-	//atexit(ft_leaks);
 	if (argc > 1)
 	{
 		stacks.stack_a = malloc(sizeof(t_stack));
 		stacks.stack_b = NULL;
 		if (!stacks.stack_a)
 			return (0);
-		printf("test: %ld\n", ft_atol("2147483648"));
 		stacks.stack_a = ft_init_a(argc, argv, stacks.stack_a);
 		ft_set_position(&stacks.stack_a);
-		if(ft_error(stacks.stack_a) == 0)
-			return(1);
+		if (ft_error(stacks.stack_a) == 0)
+			return (1);
 		stacks.sizea = argc - 1;
 		if (ft_is_sort(stacks.stack_a))
 			return (0);

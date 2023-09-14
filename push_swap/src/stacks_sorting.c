@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 19:27:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:40:04 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ t_stacks	ft_sort(t_stacks stacks)
 	while (ft_get_size(stacks.stack_a) > 3)
 		stacks = ft_pb(stacks);
 	stacks.sizeb = ft_get_size(stacks.stack_b);
+	if (ft_get_size(stacks.stack_a) == 2)
+		return (ft_sort_two(stacks));
 	stacks.stack_a = ft_sort_three(stacks.stack_a);
 	while (stacks.stack_b)
 	{
@@ -126,6 +128,5 @@ t_stacks	ft_sort(t_stacks stacks)
 		else
 			stacks.stack_a = ft_ra(stacks.stack_a, 1);
 	}
-	ft_print_list(stacks.stack_a);
 	return (stacks);
 }

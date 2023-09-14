@@ -6,14 +6,14 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 20:08:17 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:39:34 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "../include/libs/libft.h"
-#include <stdio.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -199,15 +199,8 @@ int					ft_pos(int n);
 int					ft_is_sort(t_stack *stack);
 
 /**
- * @brief Prints the stack
- * 
- * @param stack The stack to print
- */
-void				ft_print_list(t_stack *stack);
-
-/**
  * @brief Parses the stack to check if there are repeated numbers
- * 
+ *
  * @param stack The stack to parse
  * @return int If there are repeated numbers
  */
@@ -215,20 +208,26 @@ int					ft_parse(t_stack *stack);
 
 /**
  * @brief Parses the stack and prints the errors
- * 
+ *
  * @param stack The stack to parse
- * @return int 
+ * @return int
  */
 int					ft_error(t_stack *stack);
 
 /**
  * @brief Checks if there are higher or lower values than INT
- * 
- * @param stack 
- * @return int 
+ *
+ * @param stack
+ * @return int
  */
 int					ft_max_int(t_stack *stack);
 
-void				ft_leaks(void);
+/**
+ * @brief Sorts the stack with two numbers
+ *
+ * @param stacks
+ * @return t_stacks
+ */
+t_stacks			ft_sort_two(t_stacks stacks);
 
 #endif
