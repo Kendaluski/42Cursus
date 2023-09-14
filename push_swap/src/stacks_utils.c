@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 18:02:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 20:08:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
 	if(size == 2)
 		return (NULL);
 	first = malloc(sizeof(t_stack));
-	first->content = ft_atoi(numbers[cnt]);
+	first->content = ft_atol(numbers[cnt]);
 	first->act_pos = 0;
 	first->next = malloc(sizeof(t_stack));
 	stack_a = first->next;
 	cnt++;
 	while (cnt < size - 1)
 	{
-		stack_a->content = ft_atoi(numbers[cnt]);
+		stack_a->content = ft_atol(numbers[cnt]);
 		stack_a->next = malloc(sizeof(t_stack));
 		stack_a = stack_a->next;
 		cnt++;
 	}
-	stack_a->content = ft_atoi(numbers[cnt]);
+	stack_a->content = ft_atol(numbers[cnt]);
 	stack_a->next = NULL;
 	return (first);
 }

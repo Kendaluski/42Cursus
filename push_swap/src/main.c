@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 17:58:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 20:08:46 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ t_stack	*ft_arg_str(char *str)
 	stack_a = malloc(sizeof(t_stack));
 	first = malloc(sizeof(t_stack));
 	first = stack_a;
-	stack_a->content = ft_atoi(numbers[0]);
+	stack_a->content = ft_atol(numbers[0]);
 	stack_a->next = malloc(sizeof(t_stack));
 	stack_a = stack_a->next;
 	while (numbers[cnt + 1])
 	{
-		stack_a->content = ft_atoi(numbers[cnt]);
+		stack_a->content = ft_atol(numbers[cnt]);
 		stack_a->next = malloc(sizeof(t_stack));
 		stack_a = stack_a->next;
 		cnt++;
 	}
-	stack_a->content = ft_atoi(numbers[cnt]);
+	stack_a->content = ft_atol(numbers[cnt]);
 	return (first);
 }
 
@@ -57,14 +57,18 @@ int	main(int argc, char *argv[])
 {
 	t_stacks	stacks;
 
+	//atexit(ft_leaks);
 	if (argc > 1)
 	{
 		stacks.stack_a = malloc(sizeof(t_stack));
 		stacks.stack_b = NULL;
 		if (!stacks.stack_a)
 			return (0);
+		printf("test: %ld\n", ft_atol("2147483648"));
 		stacks.stack_a = ft_init_a(argc, argv, stacks.stack_a);
 		ft_set_position(&stacks.stack_a);
+		if(ft_error(stacks.stack_a) == 0)
+			return(1);
 		stacks.sizea = argc - 1;
 		if (ft_is_sort(stacks.stack_a))
 			return (0);
@@ -72,6 +76,9 @@ int	main(int argc, char *argv[])
 			stacks.stack_a = ft_sort_three(stacks.stack_a);
 		else
 			stacks = ft_sort(stacks);
-		ft_set_position(&stacks.stack_a);
+		return (0);
 	}
+	else
+		ft_printf("[ERROR]: No aguments included \n");
+	return (1);
 }

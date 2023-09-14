@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 12:04:50 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/06/30 19:34:13 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 20:09:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -384,5 +384,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 int					ft_printf(char const *str, ...);
 //GET NEXT LINE
 char				*get_next_line(int fd);
+//ATOL
+long int			ft_atol(const char *c);
 
 #endif

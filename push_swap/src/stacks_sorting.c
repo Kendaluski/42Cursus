@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/11 18:09:58 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:27:28 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,7 @@
 t_stacks	ft_move_up(t_stacks stacks, t_stack *cheapest)
 {
 	if (cheapest->cost_a == 0 && cheapest->cost_b == 0)
-	{
 		stacks = ft_pa(stacks);
-		while (!ft_is_sort(stacks.stack_a))
-		{
-			stacks.sizea = ft_get_size(stacks.stack_a);
-			if (stacks.stack_a->act_pos > stacks.sizea / 2)
-				stacks.stack_a = ft_rra(stacks.stack_a, 1);
-			else
-				stacks.stack_a = ft_ra(stacks.stack_a, 1);
-		}
-	}
 	else if (cheapest->cost_a < 0 && cheapest->cost_b < 0)
 		stacks = ft_rrr(stacks);
 	else if (cheapest->cost_a > 0 && cheapest->cost_b > 0)
@@ -128,5 +118,14 @@ t_stacks	ft_sort(t_stacks stacks)
 		stacks = ft_calculate_cost(stacks);
 		stacks = ft_move_up(stacks, ft_cheapest(stacks.stack_b));
 	}
+	while (!ft_is_sort(stacks.stack_a))
+	{
+		stacks.sizea = ft_get_size(stacks.stack_a);
+		if (stacks.stack_a->act_pos > stacks.sizea / 2)
+			stacks.stack_a = ft_rra(stacks.stack_a, 1);
+		else
+			stacks.stack_a = ft_ra(stacks.stack_a, 1);
+	}
+	ft_print_list(stacks.stack_a);
 	return (stacks);
 }
