@@ -6,7 +6,7 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 18:26:04 by jjaen-mo          #+#    #+#              #
-#    Updated: 2023/06/30 18:33:14 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/09/15 09:31:24 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS = $(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@gcc $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
 
 src/%.o : src/%.c
 	gcc $(FLAGS) -c $< -o $@

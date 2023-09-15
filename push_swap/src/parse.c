@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:27:13 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 12:42:57 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 09:12:49 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,13 @@ int	ft_error(t_stack *stack)
 	if (ft_parse(stack) == 0)
 	{
 		ft_printf("[ERROR] Wrong numbers imput\n");
+		stack = ft_clean_stack(stack);
 		return (0);
 	}
 	if (ft_max_int(stack) == 0)
 	{
 		ft_printf("[ERROR] Higher or lower values than INT included \n");
+		stack = ft_clean_stack(stack);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 10:41:02 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 12:38:48 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 09:04:17 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,23 @@ t_stacks	ft_pa(t_stacks stacks)
 {
 	t_stack	*tmp;
 
-	if (!stacks.stack_b)
-		return (stacks);
-	tmp = malloc(sizeof(t_stack));
-	tmp->content = stacks.stack_b->content;
-	tmp->next = stacks.stack_a;
-	if (stacks.stack_b->next)
-		stacks.stack_b = stacks.stack_b->next;
-	else
-		stacks.stack_b = NULL;
+	if (stacks.stack_b)
+	{
+		if (!stacks.stack_a)
+		{
+			stacks.stack_a = stacks.stack_b;
+			stacks.stack_b = stacks.stack_b->next;
+			stacks.stack_a->next = NULL;
+		}
+		else
+		{
+			tmp = stacks.stack_a;
+			stacks.stack_a = stacks.stack_b;
+			stacks.stack_b = stacks.stack_b->next;
+			stacks.stack_a->next = tmp;
+		}
+	}
 	ft_printf("pa\n");
-	stacks.stack_a = tmp;
 	ft_set_position(&stacks.stack_a);
 	ft_set_position(&stacks.stack_b);
 	return (stacks);

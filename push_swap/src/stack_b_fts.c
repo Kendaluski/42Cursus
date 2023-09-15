@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:12:50 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 12:38:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 09:01:47 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ t_stacks	ft_pb(t_stacks stacks)
 
 	if (stacks.stack_a)
 	{
-		tmp = malloc(sizeof(t_stack));
-		tmp->content = stacks.stack_a->content;
 		if (!stacks.stack_b)
-			tmp->next = NULL;
-		else
-			tmp->next = stacks.stack_b;
-		if (stacks.stack_a->next)
+		{
+			stacks.stack_b = stacks.stack_a;
 			stacks.stack_a = stacks.stack_a->next;
+			stacks.stack_b->next = NULL;
+		}
 		else
-			stacks.stack_a = NULL;
-		stacks.stack_b = tmp;
-		ft_printf("pb\n");
+		{
+			tmp = stacks.stack_b;
+			stacks.stack_b = stacks.stack_a;
+			stacks.stack_a = stacks.stack_a->next;
+			stacks.stack_b->next = tmp;
+		}
 	}
 	ft_set_position(&stacks.stack_a);
 	ft_set_position(&stacks.stack_b);

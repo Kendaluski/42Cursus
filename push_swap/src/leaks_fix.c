@@ -1,25 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stacks_utils.c                                     :+:      :+:    :+:   */
+/*   leaks_fix.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 18:58:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 09:07:08 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2023/09/15 08:16:47 by jjaen-mo          #+#    #+#             */
+/*   Updated: 2023/09/15 09:13:09 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
+char	**ft_free_str(char **str)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (str[cnt])
+	{
+		free(str[cnt]);
+		cnt++;
+	}
+	free(str);
+	return (NULL);
+}
+
+int	ft_split_size(char **str)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (str[cnt])
+		cnt++;
+	return (cnt);
+}
+
+t_stack	*ft_init_a2(char **numbers, t_stack *stack_a)
 {
 	int		cnt;
+	int		size;
 	t_stack	*first;
 
-	cnt = 1;
-	if (size == 2)
-		return (ft_init_a2(ft_split(numbers[1], ' '), stack_a));
+	cnt = 0;
+	size = ft_split_size(numbers);
 	first = malloc(sizeof(t_stack));
 	first->content = ft_atol(numbers[cnt]);
 	first->act_pos = 0;
@@ -35,48 +59,39 @@ t_stack	*ft_init_a(int size, char **numbers, t_stack *stack_a)
 	}
 	stack_a->content = ft_atol(numbers[cnt]);
 	stack_a->next = NULL;
+	ft_free_str(numbers);
 	return (first);
 }
 
-t_stacks	ft_ss(t_stacks stacks)
+t_stacks	ft_clean(t_stacks stacks)
 {
-	stacks.stack_a = ft_sa(stacks.stack_a, 0);
-	stacks.stack_b = ft_sa(stacks.stack_b, 0);
-	ft_printf("ss\n");
-	ft_set_position(&stacks.stack_a);
-	ft_set_position(&stacks.stack_b);
+	t_stack	*tmp;
+
+	while (stacks.stack_a)
+	{
+		tmp = stacks.stack_a;
+		stacks.stack_a = stacks.stack_a->next;
+		free(tmp);
+	}
+	tmp = NULL;
+	while (stacks.stack_b)
+	{
+		tmp = stacks.stack_b;
+		stacks.stack_b = stacks.stack_b->next;
+		free(tmp);
+	}
 	return (stacks);
 }
 
-t_stacks	ft_rr(t_stacks stacks)
+t_stack	*ft_clean_stack(t_stack *stack)
 {
-	stacks.stack_a = ft_ra(stacks.stack_a, 0);
-	stacks.stack_b = ft_rb(stacks.stack_b, 0);
-	ft_printf("rr\n");
-	ft_set_position(&stacks.stack_a);
-	ft_set_position(&stacks.stack_b);
-	return (stacks);
-}
+	t_stack	*tmp;
 
-t_stacks	ft_rrr(t_stacks stacks)
-{
-	stacks.stack_a = ft_rra(stacks.stack_a, 0);
-	stacks.stack_b = ft_rrb(stacks.stack_b, 0);
-	ft_printf("rrr\n");
-	ft_set_position(&stacks.stack_a);
-	ft_set_position(&stacks.stack_b);
-	return (stacks);
-}
-
-int	ft_get_size(t_stack *stack)
-{
-	int	cnt;
-
-	cnt = 0;
 	while (stack)
 	{
-		cnt++;
+		tmp = stack;
 		stack = stack->next;
+		free(tmp);
 	}
-	return (cnt);
+	return (NULL);
 }

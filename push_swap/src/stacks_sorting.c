@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:31:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 12:40:04 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 09:30:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,15 @@ t_stacks	ft_move_up(t_stacks stacks, t_stack *cheapest)
 	return (stacks);
 }
 
-int	ft_get_pos(t_stack *stack_a, int num, int target, int maxint)
+int	ft_get_pos(t_stack *stack_a, int num, int target)
 {
 	t_stack	*tmp;
 
 	tmp = stack_a;
 	while (tmp)
 	{
-		if (num < tmp->content && tmp->content < maxint)
+		if (num < tmp->content)
 		{
-			maxint = tmp->content;
-			target = tmp->act_pos;
-		}
-		tmp = tmp->next;
-	}
-	if (maxint != 2147483647)
-		return (target);
-	tmp = stack_a;
-	while (tmp)
-	{
-		if (tmp->content < maxint)
-		{
-			maxint = tmp->content;
 			target = tmp->act_pos;
 		}
 		tmp = tmp->next;
@@ -69,7 +56,10 @@ t_stacks	ft_set_target(t_stacks stacks)
 	tmp = stacks.stack_b;
 	while (tmp)
 	{
-		target = ft_get_pos(stacks.stack_a, tmp->content, target, 2147483647);
+		if (tmp->content == 2147483647)
+			target = stacks.sizea;
+		else
+			target = ft_get_pos(stacks.stack_a, tmp->content, target);
 		tmp->targ_pos = target;
 		tmp = tmp->next;
 	}
@@ -113,7 +103,8 @@ t_stacks	ft_sort(t_stacks stacks)
 	stacks.sizeb = ft_get_size(stacks.stack_b);
 	if (ft_get_size(stacks.stack_a) == 2)
 		return (ft_sort_two(stacks));
-	stacks.stack_a = ft_sort_three(stacks.stack_a);
+	else
+		stacks.stack_a = ft_sort_three(stacks.stack_a);
 	while (stacks.stack_b)
 	{
 		stacks = ft_set_target(stacks);
