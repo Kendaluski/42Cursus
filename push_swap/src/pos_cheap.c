@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 10:23:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/14 12:38:43 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:43:00 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_is_sort(t_stack *stack)
 
 t_stacks	ft_calculate_cost(t_stacks stacks)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = stacks.stack_b;
 	while (tmp)

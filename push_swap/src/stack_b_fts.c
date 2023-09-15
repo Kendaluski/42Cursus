@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:12:50 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 09:01:47 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:35:38 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_stacks	ft_pb(t_stacks stacks)
 			stacks.stack_b->next = tmp;
 		}
 	}
+	ft_printf("pb\n");
 	ft_set_position(&stacks.stack_a);
 	ft_set_position(&stacks.stack_b);
 	return (stacks);

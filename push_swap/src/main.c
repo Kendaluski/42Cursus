@@ -6,11 +6,40 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 09:04:56 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:11:18 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_check_chars(char **argv)
+{
+	int	cnt;
+	int	cnt2;
+
+	cnt = 1;
+	while (argv[cnt])
+	{
+		cnt2 = 0;
+		while (argv[cnt][cnt2])
+		{
+			if (!ft_isdigit(argv[cnt][cnt2]))
+			{
+				if (argv[cnt][cnt2] != '-' || argv[cnt][cnt2] != '+')
+				{
+					if (argv[cnt][cnt2] != ' ')
+					{
+						ft_printf("[ERROR] Non numerical characters included\n");
+						return (0);
+					}
+				}
+			}
+			cnt2++;
+		}
+		cnt++;
+	}
+	return (1);
+}
 
 void	ft_set_position(t_stack **stack)
 {
@@ -35,6 +64,8 @@ int	main(int argc, char *argv[])
 	{
 		stacks.stack_a = NULL;
 		stacks.stack_b = NULL;
+		if (ft_check_chars(argv) == 0)
+			return (1);
 		stacks.stack_a = ft_init_a(argc, argv, stacks.stack_a);
 		ft_set_position(&stacks.stack_a);
 		if (ft_error(stacks.stack_a) == 0)
