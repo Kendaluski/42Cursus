@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 09:12:30 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/18 09:24:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,12 +230,38 @@ int					ft_max_int(t_stack *stack);
  */
 t_stacks			ft_sort_two(t_stacks stacks);
 
-t_stacks			ft_clean(t_stacks stacks);
+/**
+ * @brief Frees the stack and the 2d array passed via params
+ * 
+ * @param stack The stack to free
+ * @param nums The 2d array
+ * @return t_stack* The stack freed
+ */
+t_stack				*ft_clean(t_stack *stack, char **nums);
 
+/**
+ * @brief Initializes stack a but with a 2d array
+ * 
+ * @param numbers The array of numbers
+ * @param stack_a The stack a empty
+ * @return t_stack* The stack a filled
+ */
 t_stack				*ft_init_a2(char **numbers, t_stack *stack_a);
 
+/**
+ * @brief Gets the size of the 2d array
+ * 
+ * @param str The array
+ * @return int The size
+ */
 int					ft_split_size(char **str);
 
+/**
+ * @brief Frees the stack passed via params
+ * 
+ * @param stack The stack to free
+ * @return t_stack* The stack freed
+ */
 t_stack				*ft_clean_stack(t_stack *stack);
 
 #endif

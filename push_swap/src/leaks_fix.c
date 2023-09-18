@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 08:16:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 19:40:11 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/18 09:19:42 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_stack	*ft_init_a2(char **numbers, t_stack *stack_a)
 	first->next = malloc(sizeof(t_stack));
 	stack_a = first->next;
 	cnt++;
+	if (size == 1)
+		return (ft_clean(first, numbers));
 	while (cnt < size - 1)
 	{
 		stack_a->content = ft_atol(numbers[cnt]);
@@ -57,32 +59,17 @@ t_stack	*ft_init_a2(char **numbers, t_stack *stack_a)
 		stack_a = stack_a->next;
 		cnt++;
 	}
-	if (size == 1)
-		return (stack_a);
 	stack_a->content = ft_atol(numbers[cnt]);
 	stack_a->next = NULL;
 	ft_free_str(numbers);
 	return (first);
 }
 
-t_stacks	ft_clean(t_stacks stacks)
+t_stack	*ft_clean(t_stack *stack, char **nums)
 {
-	t_stack	*tmp;
-
-	while (stacks.stack_a)
-	{
-		tmp = stacks.stack_a;
-		stacks.stack_a = stacks.stack_a->next;
-		free(tmp);
-	}
-	tmp = NULL;
-	while (stacks.stack_b)
-	{
-		tmp = stacks.stack_b;
-		stacks.stack_b = stacks.stack_b->next;
-		free(tmp);
-	}
-	return (stacks);
+	stack = ft_clean_stack(stack);
+	ft_free_str(nums);
+	return (stack);
 }
 
 t_stack	*ft_clean_stack(t_stack *stack)

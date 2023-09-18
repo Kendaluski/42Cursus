@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 20:11:18 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/18 09:22:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_check_chars(char **argv)
 				{
 					if (argv[cnt][cnt2] != ' ')
 					{
-						ft_printf("[ERROR] Non numerical characters included\n");
+						ft_printf("[ERROR] Non numerical included\n");
 						return (0);
 					}
 				}
@@ -73,14 +73,14 @@ int	main(int argc, char *argv[])
 		stacks.sizea = argc - 1;
 		if (ft_is_sort(stacks.stack_a))
 		{
-			stacks = ft_clean(stacks);
+			stacks.stack_a = ft_clean_stack(stacks.stack_a);
 			return (0);
 		}
 		if (stacks.sizea == 3)
 			stacks.stack_a = ft_sort_three(stacks.stack_a);
 		else
 			stacks = ft_sort(stacks);
-		stacks = ft_clean(stacks);
+		stacks.stack_a = ft_clean_stack(stacks.stack_a);
 		return (0);
 	}
 }
