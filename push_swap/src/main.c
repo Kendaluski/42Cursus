@@ -6,11 +6,40 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:49:03 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/19 13:57:59 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:37:05 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_check_follow(char **argv)
+{
+	int	cnt;
+	int	cnt2;
+
+	cnt = 1;
+	while (argv[cnt])
+	{
+		cnt2 = 0;
+		while (argv[cnt][cnt2])
+		{
+			if (argv[cnt][cnt2] == '-' || argv[cnt][cnt2] == '+')
+			{
+				if (ft_isdigit(argv[cnt][cnt2 - 1]) || (argv[cnt][cnt2
+						+ 1] == ' ' || argv[cnt][cnt2 + 1] == '\0')
+					|| (argv[cnt][cnt2 + 1] == '-' || argv[cnt][cnt2
+						+ 1] == '+'))
+				{
+					ft_printf("[ERROR] Wrong Imput\n");
+					return (0);
+				}
+			}
+			cnt2++;
+		}
+		cnt++;
+	}
+	return (1);
+}
 
 int	ft_check_chars(char **argv)
 {
@@ -25,7 +54,7 @@ int	ft_check_chars(char **argv)
 		{
 			if (!ft_isdigit(argv[cnt][cnt2]))
 			{
-				if (argv[cnt][cnt2] != '-' || argv[cnt][cnt2] != '+')
+				if (argv[cnt][cnt2] != '-' && argv[cnt][cnt2] != '+')
 				{
 					if (argv[cnt][cnt2] != ' ')
 					{
@@ -64,7 +93,7 @@ int	main(int argc, char *argv[])
 	{
 		stacks.stack_a = NULL;
 		stacks.stack_b = NULL;
-		if (ft_check_chars(argv) == 0)
+		if (ft_check_follow(argv) == 0 || ft_check_chars(argv) == 0)
 			return (1);
 		stacks.stack_a = ft_init_a(argc, argv, stacks.stack_a);
 		ft_set_position(&stacks.stack_a);
