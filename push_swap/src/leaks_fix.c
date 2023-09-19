@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 08:16:47 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/18 09:19:42 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:00:27 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ t_stack	*ft_init_a2(char **numbers, t_stack *stack_a)
 
 t_stack	*ft_clean(t_stack *stack, char **nums)
 {
-	stack = ft_clean_stack(stack);
+	free(stack->next);
+	stack->next = NULL;
+	free(stack);
+	stack = NULL;
 	ft_free_str(nums);
 	return (stack);
 }
@@ -76,7 +79,7 @@ t_stack	*ft_clean_stack(t_stack *stack)
 {
 	t_stack	*tmp;
 
-	while (stack)
+	while (stack && stack->next)
 	{
 		tmp = stack;
 		stack = stack->next;
