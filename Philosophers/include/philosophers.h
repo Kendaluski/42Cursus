@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:17:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/27 21:05:52 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/28 20:52:14 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,18 @@ enum				e_status
 
 typedef struct s_fork
 {
-	int id;
-	int status;
-	struct s_fork *next;
-}				t_fork;
+	int				id;
+	int				status;
+	int				philo_id;
+	pthread_mutex_t	mutex;
+	struct s_fork	*next;
+}					t_fork;
 
 typedef struct s_philo
 {
 	int				id;
 	int				left_id;
 	int				right_id;
-	int				die_time;
-	int				eat_time;
-	int				sleep_time;
 	int				eat_count;
 	int				max_eat;
 	int				status;
@@ -60,6 +59,7 @@ typedef struct s_data
 	int				max_eat;
 	int				fork_num;
 	t_philo			*philos;
+	t_fork			*forks;
 }					t_data;
 
 /**
@@ -111,5 +111,21 @@ void				*ft_philo_life(void *arg);
  * @return t_philo* The pointer to the first philosopher after joining threats
  */
 t_philo				*ft_join_threads(t_philo *list);
+
+/**
+ * @brief Check if the philosopher can pick a fork
+ * 
+ * @param forks The list of forks
+ * @param philoid The id of the philosopher
+ */
+void				ft_pick_forks(t_fork *forks, int philoid);
+
+/**
+ * @brief Returns the last fork of the list
+ * 
+ * @param list The list of forks
+ * @return t_fork* The last fork of the list
+ */
+t_fork *ft_last(t_fork *list);
 
 #endif

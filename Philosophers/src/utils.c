@@ -6,23 +6,20 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:51:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/27 20:21:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/28 20:51:50 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-t_philo *ft_join_threads(t_philo *list)
+t_fork *ft_last(t_fork *list)
 {
-	t_philo *tmp;
+	t_fork *tmp;
 
 	tmp = list;
-	while(tmp)
-	{
-		pthread_join(tmp->thread_id, NULL);
+	while(tmp->next)
 		tmp = tmp->next;
-	}
-	return (list);
+	return (tmp);
 }
 
 void	ft_print_list(t_philo *list)

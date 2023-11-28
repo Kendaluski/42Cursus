@@ -6,11 +6,33 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/27 21:05:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2023/11/28 21:04:10 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+t_fork	*ft_init_forks(int forkn)
+{
+	int		cnt;
+	t_fork	*first;
+	t_fork	*fork;
+
+	first = malloc(sizeof(t_fork));
+	cnt = 0;
+	fork = first;
+	while (cnt < forkn)
+	{
+		fork->id = cnt + 1;
+		fork->status = 0;
+		fork->philo_id = 0;
+		pthread_mutex_init(&fork->mutex, NULL);
+		fork->next = malloc(sizeof(t_fork));
+		fork = fork->next;
+		cnt++;
+	}
+	return (first);
+}
 
 void	*ft_philo_life(void *arg)
 {
@@ -21,16 +43,17 @@ void	*ft_philo_life(void *arg)
 	{
 		philo->status = THINKING;
 		printf("Philosopher %i is thinking\n", philo->id);
-		sleep(1);
+		usleep(1000);
+		ft_pick_forks(philo);
 		philo->status = FORK;
 		printf("Philosopher %i has taken a fork\n", philo->id);
 		philo->status = EATING;
 		printf("Philosopher %i is eating\n", philo->id);
-		sleep(philo->eat_time);
+		usleep(data->eat_time * 1000);
 		philo->eat_count++;
 		philo->status = SLEEPING;
 		printf("Philosopher %i is sleeping\n", philo->id);
-		sleep(philo->sleep_time);
+		usleep(data->sleep_time * 1000);
 	}
 	return (NULL);
 }
@@ -56,12 +79,9 @@ t_philo	*ft_init_philos(int num, t_data data)
 		else
 			philo->right_id = cnt + 2;
 		philo->eat_count = 0;
-		philo->die_time = data.die_time;
-		philo->eat_time = data.eat_time;
-		philo->sleep_time = data.sleep_time;
 		philo->max_eat = data.max_eat;
 		philo->status = 0;
-		pthread_create(&philo->thread_id, NULL, ft_philo_life, philo);
+		pthread_create(&philo->thread_id, NULL, ft_philo_life, &philo);
 		philo->next = malloc(sizeof(t_philo));
 		philo = philo->next;
 		cnt++;
@@ -78,6 +98,8 @@ t_data	ft_init_data(char *num_philo, char *d_time, char *e_time, char *s_time)
 	data.eat_time = ft_atoi(e_time);
 	data.sleep_time = ft_atoi(s_time);
 	data.fork_num = data.philo_num;
+	data.max_eat = -1;
+	data.forks = ft_init_forks(data.fork_num);
 	return (data);
 }
 

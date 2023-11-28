@@ -6,13 +6,13 @@
 #    By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 19:16:23 by jjaen-mo          #+#    #+#              #
-#    Updated: 2023/11/27 19:52:52 by jjaen-mo         ###   ########.fr        #
+#    Updated: 2023/11/28 20:52:26 by jjaen-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 FLAGS = -Wall -Wextra -Werror
-FILES = src/main.c src/utils.c
+FILES = src/main.c src/utils.c src/mutexes.c
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
