@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/28 21:04:10 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:11:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_fork	*ft_init_forks(int forkn)
 		fork->status = 0;
 		fork->philo_id = 0;
 		pthread_mutex_init(&fork->mutex, NULL);
+		cnt++;
 		fork->next = malloc(sizeof(t_fork));
 		fork = fork->next;
-		cnt++;
 	}
 	return (first);
 }
@@ -42,18 +42,28 @@ void	*ft_philo_life(void *arg)
 	while (1)
 	{
 		philo->status = THINKING;
-		printf("Philosopher %i is thinking\n", philo->id);
-		usleep(1000);
-		ft_pick_forks(philo);
+		printf("[%i] Philosopher %i is thinking\n", ft_current_time(), philo->id);
+		usleep(1000000);
+		ft_pick_forks(philo->first_fork, philo->id, 1);
 		philo->status = FORK;
-		printf("Philosopher %i has taken a fork\n", philo->id);
+		printf("[%i] Philosopher %i has taken two forks\n", ft_current_time(), philo->id);
 		philo->status = EATING;
-		printf("Philosopher %i is eating\n", philo->id);
-		usleep(data->eat_time * 1000);
+		printf("[%i] Philosopher %i is eating\n", ft_current_time(), philo->id);
+		usleep(philo->eat_time * 1000);
+		philo->last_eaten = ft_current_time();
+		ft_pick_forks(philo->first_fork, philo->id, 0);
 		philo->eat_count++;
+		if(philo->max_eat != -1 && philo->eat_count == philo->max_eat)
+			break ;
 		philo->status = SLEEPING;
-		printf("Philosopher %i is sleeping\n", philo->id);
-		usleep(data->sleep_time * 1000);
+		printf("[%i] Philosopher %i is sleeping\n", ft_current_time(), philo->id);
+		usleep(philo->sleep_time * 1000);
+		if(ft_current_time() - philo->last_eaten > philo->die_time)
+		{
+			philo->status = DEAD;
+			printf("[%i] Philosopher %i died\n", ft_current_time(), philo->id);
+			exit(0);
+		}
 	}
 	return (NULL);
 }
@@ -70,18 +80,15 @@ t_philo	*ft_init_philos(int num, t_data data)
 	while (cnt < num)
 	{
 		philo->id = cnt + 1;
-		if (cnt == 0)
-			philo->left_id = num;
-		else
-			philo->left_id = cnt;
-		if (cnt == num - 1)
-			philo->right_id = 1;
-		else
-			philo->right_id = cnt + 2;
+		philo->eat_time = data.eat_time;
+		philo->sleep_time = data.sleep_time;
+		philo->die_time = data.die_time;
 		philo->eat_count = 0;
 		philo->max_eat = data.max_eat;
 		philo->status = 0;
-		pthread_create(&philo->thread_id, NULL, ft_philo_life, &philo);
+		philo->last_eaten = 0;
+		philo->first_fork = data.forks;
+		pthread_create(&philo->thread_id, NULL, ft_philo_life, philo);
 		philo->next = malloc(sizeof(t_philo));
 		philo = philo->next;
 		cnt++;
@@ -112,9 +119,11 @@ int	main(int argc, char **argv)
 		printf("[ERROR]: Wrong argument input\n");
 		return (1);
 	}
-	if (argc == 5)
+	if (argc == 5 || argc == 6)
 	{
 		data = ft_init_data(argv[1], argv[2], argv[3], argv[4]);
+		if (argc == 6 && ft_atoi(argv[5]) > 0)
+			data.max_eat = ft_atoi(argv[5]);
 		if (data.philo_num < 1 || data.die_time < 1 || data.eat_time < 1
 			|| data.sleep_time < 1)
 		{

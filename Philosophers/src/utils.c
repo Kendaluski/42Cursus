@@ -6,12 +6,19 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:51:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/28 20:51:50 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:52:15 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
+int	ft_current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
 t_fork *ft_last(t_fork *list)
 {
 	t_fork *tmp;
@@ -30,8 +37,8 @@ void	ft_print_list(t_philo *list)
 	while (tmp)
 	{
 		printf("Philosopher Number: %i\n{\n", tmp->id);
-		printf("Left Philosopher: %i\n", tmp->left_id);
-		printf("Right Philosopher: %i\n", tmp->right_id);
+		printf("Left Philosopher: %i\n", tmp->id - 1);
+		printf("Right Philosopher: %i\n", tmp->id + 1);
 		printf("Times Eaten: %i\n", tmp->eat_count);
 		printf("Actual status: %i\n}\n\n", tmp->status);
 		tmp = tmp->next;

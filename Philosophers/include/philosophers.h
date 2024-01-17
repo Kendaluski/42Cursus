@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:17:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/11/28 20:52:14 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:52:48 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,15 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int				id;
-	int				left_id;
-	int				right_id;
+	int				eat_time;
+	int				sleep_time;
 	int				eat_count;
 	int				max_eat;
+	int				die_time;
 	int				status;
+	int				last_eaten;
 	pthread_t		thread_id;
+	struct s_fork	*first_fork;
 	struct s_philo	*next;
 }					t_philo;
 
@@ -117,8 +120,9 @@ t_philo				*ft_join_threads(t_philo *list);
  * 
  * @param forks The list of forks
  * @param philoid The id of the philosopher
+ * @param action The action to do (0 = unlock, 1 = lock)
  */
-void				ft_pick_forks(t_fork *forks, int philoid);
+void				ft_pick_forks(t_fork *forks, int philoid, int action);
 
 /**
  * @brief Returns the last fork of the list
@@ -126,6 +130,13 @@ void				ft_pick_forks(t_fork *forks, int philoid);
  * @param list The list of forks
  * @return t_fork* The last fork of the list
  */
-t_fork *ft_last(t_fork *list);
+t_fork				*ft_last(t_fork *list);
+
+/**
+ * @brief Returns the current time in milliseconds
+ * 
+ * @return int The current time in milliseconds
+ */
+int	ft_current_time(void);
 
 #endif
