@@ -6,11 +6,25 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:50:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/17 20:40:44 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:55:01 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+void ft_exit(t_philo *philo)
+{
+	t_philo	*tmp;
+
+	tmp = philo;
+	while (tmp)
+	{
+		printf("Detach %i\n", tmp->id);
+		//pthread_detach(tmp->thread_id);
+		tmp = tmp->next;
+	}
+	exit(0);
+}
 
 t_philo	*ft_join_threads(t_philo *list)
 {
@@ -19,6 +33,7 @@ t_philo	*ft_join_threads(t_philo *list)
 	tmp = list;
 	while (tmp)
 	{
+		printf("Join %i\n", tmp->id);
 		pthread_join(tmp->thread_id, NULL);
 		tmp = tmp->next;
 	}
@@ -53,6 +68,7 @@ void	ft_pick_forks(t_fork *forks, int philoid, int action)
 	t_fork	*tmp2;
 
 	tmp = forks;
+	tmp2 = NULL;
 	if (philoid == 1)
 	{
 		tmp2 = ft_last(forks);

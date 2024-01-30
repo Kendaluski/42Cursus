@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:17:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/17 20:52:48 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:26:21 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ enum				e_status
 	EATING,
 	SLEEPING,
 	FORK,
-	DEAD,
+	FINISHED
 };
 
 typedef struct s_fork
@@ -138,5 +138,7 @@ t_fork				*ft_last(t_fork *list);
  * @return int The current time in milliseconds
  */
 int	ft_current_time(void);
+
+void ft_exit(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/17 21:11:13 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:56:13 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*ft_philo_life(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (1)
+	while (philo->status != FINISHED)
 	{
 		philo->status = THINKING;
 		printf("[%i] Philosopher %i is thinking\n", ft_current_time(), philo->id);
@@ -54,15 +54,21 @@ void	*ft_philo_life(void *arg)
 		ft_pick_forks(philo->first_fork, philo->id, 0);
 		philo->eat_count++;
 		if(philo->max_eat != -1 && philo->eat_count == philo->max_eat)
-			break ;
-		philo->status = SLEEPING;
-		printf("[%i] Philosopher %i is sleeping\n", ft_current_time(), philo->id);
-		usleep(philo->sleep_time * 1000);
-		if(ft_current_time() - philo->last_eaten > philo->die_time)
 		{
-			philo->status = DEAD;
-			printf("[%i] Philosopher %i died\n", ft_current_time(), philo->id);
-			exit(0);
+			philo->status = FINISHED;
+			break;
+		}
+		else
+		{
+			philo->status = SLEEPING;
+			printf("[%i] Philosopher %i is sleeping\n", ft_current_time(), philo->id);
+			usleep(philo->sleep_time * 1000);
+			if(ft_current_time() - philo->last_eaten > philo->die_time)
+			{
+				philo->status = FINISHED;
+				printf("[%i] Philosopher %i died\n", ft_current_time(), philo->id);
+				ft_exit(philo);
+			}
 		}
 	}
 	return (NULL);
@@ -89,9 +95,9 @@ t_philo	*ft_init_philos(int num, t_data data)
 		philo->last_eaten = 0;
 		philo->first_fork = data.forks;
 		pthread_create(&philo->thread_id, NULL, ft_philo_life, philo);
+		cnt++;
 		philo->next = malloc(sizeof(t_philo));
 		philo = philo->next;
-		cnt++;
 	}
 	return (first);
 }
@@ -105,7 +111,6 @@ t_data	ft_init_data(char *num_philo, char *d_time, char *e_time, char *s_time)
 	data.eat_time = ft_atoi(e_time);
 	data.sleep_time = ft_atoi(s_time);
 	data.fork_num = data.philo_num;
-	data.max_eat = -1;
 	data.forks = ft_init_forks(data.fork_num);
 	return (data);
 }
@@ -124,6 +129,8 @@ int	main(int argc, char **argv)
 		data = ft_init_data(argv[1], argv[2], argv[3], argv[4]);
 		if (argc == 6 && ft_atoi(argv[5]) > 0)
 			data.max_eat = ft_atoi(argv[5]);
+		else
+			data.max_eat = -1;
 		if (data.philo_num < 1 || data.die_time < 1 || data.eat_time < 1
 			|| data.sleep_time < 1)
 		{
