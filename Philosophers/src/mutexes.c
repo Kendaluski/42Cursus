@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:50:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/31 14:54:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:28:18 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_change_status(t_fork *fork1, t_fork *fork2, t_philo *philo,
 
 void	ft_first_fork(t_fork *first, t_fork *second, t_philo *philo, int action)
 {
-		ft_change_status(first, second, philo, action);
+	ft_change_status(first, second, philo, action);
 }
 
 void	ft_pick_forks(t_fork *forks, t_philo *philo, int action)

@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/31 14:58:54 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:38:31 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ t_data	ft_init_data(char *num_philo, char *d_time, char *e_time, char *s_time)
 	t_data	data;
 
 	data.philo_num = ft_atoi(num_philo);
-	if(data.philo_num == 1)
+	if (data.philo_num == 1)
 	{
-		printf("There is only 1 philosopher, he will die because he can't eat\n");
+		printf("There is only 1 philosopher,");
+		printf("he will die because he can't eat\n");
 		exit(0);
 	}
 	data.die_time = ft_atoi(d_time);

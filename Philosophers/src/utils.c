@@ -6,16 +6,16 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:51:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/31 14:59:58 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:42:35 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-void ft_handle_death(t_philo *philo)
+void	ft_handle_death(t_philo *philo)
 {
 	philo = ft_free_philo(philo);
-	philo->first_fork = ft_free_forks(philo->first_fork);
+	//philo->first_fork = ft_free_forks(philo->first_fork);
 	exit(0);
 }
 
