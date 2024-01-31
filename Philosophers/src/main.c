@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/30 20:56:13 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:58:54 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,22 @@ void	*ft_philo_life(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->die_time == 0)
+		return (NULL);
 	while (philo->status != FINISHED)
 	{
-		philo->status = THINKING;
-		printf("[%i] Philosopher %i is thinking\n", ft_current_time(), philo->id);
-		usleep(1000000);
-		ft_pick_forks(philo->first_fork, philo->id, 1);
-		philo->status = FORK;
-		printf("[%i] Philosopher %i has taken two forks\n", ft_current_time(), philo->id);
-		philo->status = EATING;
-		printf("[%i] Philosopher %i is eating\n", ft_current_time(), philo->id);
-		usleep(philo->eat_time * 1000);
-		philo->last_eaten = ft_current_time();
-		ft_pick_forks(philo->first_fork, philo->id, 0);
-		philo->eat_count++;
-		if(philo->max_eat != -1 && philo->eat_count == philo->max_eat)
+		if (ft_check_finish(philo) && philo->status == DEAD)
+			ft_handle_death(philo);
+		ft_philo_eat(philo);
+		if (philo->max_eat != -1 && philo->eat_count == philo->max_eat)
 		{
 			philo->status = FINISHED;
-			break;
+			break ;
 		}
 		else
 		{
-			philo->status = SLEEPING;
-			printf("[%i] Philosopher %i is sleeping\n", ft_current_time(), philo->id);
-			usleep(philo->sleep_time * 1000);
-			if(ft_current_time() - philo->last_eaten > philo->die_time)
-			{
-				philo->status = FINISHED;
-				printf("[%i] Philosopher %i died\n", ft_current_time(), philo->id);
-				ft_exit(philo);
-			}
+			ft_philo_sleep(philo);
+			ft_philo_think(philo);
 		}
 	}
 	return (NULL);
@@ -94,6 +80,7 @@ t_philo	*ft_init_philos(int num, t_data data)
 		philo->status = 0;
 		philo->last_eaten = 0;
 		philo->first_fork = data.forks;
+		philo->program_start = data.program_start;
 		pthread_create(&philo->thread_id, NULL, ft_philo_life, philo);
 		cnt++;
 		philo->next = malloc(sizeof(t_philo));
@@ -107,11 +94,17 @@ t_data	ft_init_data(char *num_philo, char *d_time, char *e_time, char *s_time)
 	t_data	data;
 
 	data.philo_num = ft_atoi(num_philo);
+	if(data.philo_num == 1)
+	{
+		printf("There is only 1 philosopher, he will die because he can't eat\n");
+		exit(0);
+	}
 	data.die_time = ft_atoi(d_time);
 	data.eat_time = ft_atoi(e_time);
 	data.sleep_time = ft_atoi(s_time);
 	data.fork_num = data.philo_num;
 	data.forks = ft_init_forks(data.fork_num);
+	data.program_start = ft_start_time();
 	return (data);
 }
 
@@ -139,5 +132,6 @@ int	main(int argc, char **argv)
 		}
 		data.philos = ft_init_philos(data.philo_num, data);
 		data.philos = ft_join_threads(data.philos);
+		data = ft_clean_data(data);
 	}
 }
