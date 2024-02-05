@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:50:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/31 17:28:18 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:59:06 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_philo	*ft_join_threads(t_philo *list)
 	t_philo	*tmp;
 
 	tmp = list;
-	while (tmp)
+	while (tmp->next)
 	{
 		pthread_join(tmp->thread_id, NULL);
 		tmp = tmp->next;
@@ -39,14 +39,14 @@ void	ft_change_status(t_fork *fork1, t_fork *fork2, t_philo *philo,
 	}
 	else if (action == 1 && fork1->status == 0 && fork2->status == 0)
 	{
-		if (!pthread_mutex_lock(&fork1->mutex))
-			printf("[%ld] Philosopher %i has taken a fork\n",
-				ft_current_time(philo->program_start),
-				philo->id);
-		if (!pthread_mutex_lock(&fork2->mutex))
-			printf("[%ld] Philosopher %i has taken a fork\n",
-				ft_current_time(philo->program_start),
-				philo->id);
+		pthread_mutex_lock(&fork1->mutex);
+		printf("[%ld] Philosopher %i has taken the first fork\n",
+			ft_current_time(philo->program_start),
+			philo->id);
+		pthread_mutex_lock(&fork2->mutex);
+		printf("[%ld] Philosopher %i has taken the second fork\n",
+			ft_current_time(philo->program_start),
+			philo->id);
 		fork1->status = 1;
 		fork2->status = 1;
 		fork1->philo_id = philo->id;

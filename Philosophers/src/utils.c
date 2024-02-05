@@ -6,18 +6,11 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:51:42 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/31 17:42:35 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:58:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
-
-void	ft_handle_death(t_philo *philo)
-{
-	philo = ft_free_philo(philo);
-	//philo->first_fork = ft_free_forks(philo->first_fork);
-	exit(0);
-}
 
 long	ft_current_time(long start_time)
 {
@@ -44,7 +37,8 @@ t_fork	*ft_last(t_fork *list)
 	t_fork	*tmp;
 
 	tmp = list;
-	while (tmp->next)
+	
+	while (tmp->next->next)
 		tmp = tmp->next;
 	return (tmp);
 }

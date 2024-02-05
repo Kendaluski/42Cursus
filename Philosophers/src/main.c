@@ -6,33 +6,11 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/01/31 17:38:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:30:57 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
-
-t_fork	*ft_init_forks(int forkn)
-{
-	int		cnt;
-	t_fork	*first;
-	t_fork	*fork;
-
-	first = malloc(sizeof(t_fork));
-	cnt = 0;
-	fork = first;
-	while (cnt < forkn)
-	{
-		fork->id = cnt + 1;
-		fork->status = 0;
-		fork->philo_id = 0;
-		pthread_mutex_init(&fork->mutex, NULL);
-		cnt++;
-		fork->next = malloc(sizeof(t_fork));
-		fork = fork->next;
-	}
-	return (first);
-}
 
 void	*ft_philo_life(void *arg)
 {
@@ -41,17 +19,15 @@ void	*ft_philo_life(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->die_time == 0)
 		return (NULL);
-	while (philo->status != FINISHED)
+	while (ft_check_exit(philo) != 1)
 	{
-		if (ft_check_finish(philo) && philo->status == DEAD)
-			ft_handle_death(philo);
 		ft_philo_eat(philo);
 		if (philo->max_eat != -1 && philo->eat_count == philo->max_eat)
 		{
 			philo->status = FINISHED;
 			break ;
 		}
-		else
+		else if (ft_check_exit(philo) != 1)
 		{
 			ft_philo_sleep(philo);
 			ft_philo_think(philo);
@@ -60,7 +36,7 @@ void	*ft_philo_life(void *arg)
 	return (NULL);
 }
 
-t_philo	*ft_init_philos(int num, t_data data)
+t_philo	*ft_init_philos(int num, t_data *data)
 {
 	t_philo	*first;
 	t_philo	*philo;
@@ -71,17 +47,7 @@ t_philo	*ft_init_philos(int num, t_data data)
 	philo = first;
 	while (cnt < num)
 	{
-		philo->id = cnt + 1;
-		philo->eat_time = data.eat_time;
-		philo->sleep_time = data.sleep_time;
-		philo->die_time = data.die_time;
-		philo->eat_count = 0;
-		philo->max_eat = data.max_eat;
-		philo->status = 0;
-		philo->last_eaten = 0;
-		philo->first_fork = data.forks;
-		philo->program_start = data.program_start;
-		pthread_create(&philo->thread_id, NULL, ft_philo_life, philo);
+		philo = ft_philo_values(data, cnt, philo);
 		cnt++;
 		philo->next = malloc(sizeof(t_philo));
 		philo = philo->next;
@@ -106,7 +72,22 @@ t_data	ft_init_data(char *num_philo, char *d_time, char *e_time, char *s_time)
 	data.fork_num = data.philo_num;
 	data.forks = ft_init_forks(data.fork_num);
 	data.program_start = ft_start_time();
+	data.exit = 0;
+	pthread_mutex_init(&data.exit_mutex, NULL);
 	return (data);
+}
+
+void	ft_philo_checker(t_data *data)
+{
+	while (1)
+	{
+		data->exit = ft_check_eat(data->philos, data->max_eat, data->philo_num);
+		if (data->exit == 1)
+			break ;
+		data->exit = ft_handle_death(data->philos);
+		if (data->exit == 1)
+			break ;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -131,7 +112,8 @@ int	main(int argc, char **argv)
 			printf("[ERROR]: Negatives are not allowed!\n");
 			return (1);
 		}
-		data.philos = ft_init_philos(data.philo_num, data);
+		data.philos = ft_init_philos(data.philo_num, &data);
+		ft_philo_checker(&data);
 		data.philos = ft_join_threads(data.philos);
 		data = ft_clean_data(data);
 	}
