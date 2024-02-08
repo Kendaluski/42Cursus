@@ -6,17 +6,17 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:02:06 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/08 21:32:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:01:30 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-t_data ft_mutex_destroy(t_data data)
+t_data	ft_mutex_destroy(t_data data)
 {
 	t_fork	*tmp;
 	t_philo	*philo;
-	
+
 	tmp = data.forks;
 	philo = data.philos;
 	while (tmp->next)
@@ -30,6 +30,7 @@ t_data ft_mutex_destroy(t_data data)
 		philo = philo->next;
 	}
 	pthread_mutex_destroy(&data.exit_mutex);
+	data.philos = ft_join_threads(data.philos);
 	return (data);
 }
 
@@ -68,7 +69,7 @@ int	ft_handle_death(t_philo *philo)
 			- tmp->last_eaten > tmp->die_time)
 		{
 			tmp->status = DEAD;
-			printf(RED"[%ld] Philosopher %i died\n"DEFAULT,
+			printf(RED "[%ld] Philosopher %i died\n" DEFAULT,
 				ft_current_time(tmp->program_start),
 				tmp->id);
 			pthread_mutex_unlock(tmp->checker_mutex);

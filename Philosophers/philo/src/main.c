@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/08 21:26:25 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:01:49 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	*ft_philo_life(void *arg)
 		return (NULL);
 	while (ft_check_exit(philo) != 1)
 	{
-		if(ft_check_exit(philo) == 1)
+		if (ft_check_exit(philo) == 1)
 			break ;
 		ft_philo_eat(philo);
-		if(ft_check_exit(philo) == 1)
+		if (ft_check_exit(philo) == 1)
 			break ;
 		if (philo->max_eat != -1 && philo->eat_count == philo->max_eat)
 		{
@@ -126,7 +126,6 @@ int	main(int argc, char **argv)
 		data.philos = ft_init_philos(data.philo_num, &data);
 		ft_philo_checker(&data);
 		data = ft_mutex_destroy(data);
-		data.philos = ft_join_threads(data.philos);
 		data = ft_clean_data(data);
 	}
 }

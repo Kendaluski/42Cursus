@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:50:22 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/08 21:48:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:57:20 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,31 @@ t_philo	*ft_join_threads(t_philo *list)
 	return (list);
 }
 
+int	ft_get_forks(t_fork *fork1, t_fork *fork2, t_philo *philo)
+{
+	pthread_mutex_lock(&fork1->mutex);
+	if (ft_check_exit(philo))
+	{
+		pthread_mutex_unlock(&fork1->mutex);
+		return (0);
+	}
+	printf("[%ld] Philosopher %i has taken the first fork\n",
+		ft_current_time(philo->program_start),
+		philo->id);
+	pthread_mutex_lock(&fork2->mutex);
+	if (ft_check_exit(philo))
+	{
+		pthread_mutex_unlock(&fork2->mutex);
+		return (0);
+	}
+	printf("[%ld] Philosopher %i has taken the second fork\n",
+		ft_current_time(philo->program_start),
+		philo->id);
+	fork1->status = 1;
+	fork2->status = 1;
+	return (1);
+}
+
 int	ft_change_status(t_fork *fork1, t_fork *fork2, t_philo *philo, int action)
 {
 	if (action == 0)
@@ -36,29 +61,7 @@ int	ft_change_status(t_fork *fork1, t_fork *fork2, t_philo *philo, int action)
 		return (1);
 	}
 	else if (action == 1)
-	{
-		pthread_mutex_lock(&fork1->mutex);
-		if (ft_check_exit(philo))
-		{
-			pthread_mutex_unlock(&fork1->mutex);
-			return (0);
-		}
-		printf("[%ld] Philosopher %i has taken the first fork\n",
-			ft_current_time(philo->program_start),
-			philo->id);
-		pthread_mutex_lock(&fork2->mutex);
-		if (ft_check_exit(philo))
-		{
-			pthread_mutex_unlock(&fork2->mutex);
-			return (0);
-		}
-		printf("[%ld] Philosopher %i has taken the second fork\n",
-			ft_current_time(philo->program_start),
-			philo->id);
-		fork1->status = 1;
-		fork2->status = 1;
-		return (1);
-	}
+		return (ft_get_forks(fork1, fork2, philo));
 	return (0);
 }
 
