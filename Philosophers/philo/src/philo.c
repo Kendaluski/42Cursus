@@ -6,15 +6,15 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:28:00 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/08 23:37:38 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:16:48 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-int ft_print_status(t_philo *philo)
+int	ft_print_status(t_philo *philo)
 {
-	if(ft_check_exit(philo))
+	if (ft_check_exit(philo))
 		return (1);
 	if (philo->status == EATING)
 		printf("[%ld] Philosopher %i is eating\n",

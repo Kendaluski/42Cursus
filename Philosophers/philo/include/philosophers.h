@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:17:25 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/08 21:28:20 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:20:22 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,18 @@ int						ft_handle_death(t_philo *philo);
  */
 int						ft_check_eat(t_philo *philo, int max_eat, int philo_n);
 
+/**
+ * @brief Destroys the mutexes and joins the threads
+ * 
+ * @param data The data structure
+ * @return t_data The data structure cleaned
+ */
 t_data					ft_mutex_destroy(t_data data);
 
+/**
+ * @brief Handles when there is only one philosopher
+ * 
+ * @param data The data structure
+ */
+void					ft_one_philo(t_data data);
 #endif

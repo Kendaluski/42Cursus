@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:30:39 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/09 00:01:49 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:20:54 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,16 @@ t_data	ft_init_data(char *num_philo, char *d_time, char *e_time, char *s_time)
 	t_data	data;
 
 	data.philo_num = ft_atoi(num_philo);
-	if (data.philo_num == 1)
-	{
-		printf("There is only 1 philosopher,");
-		printf("he will die because he can't eat\n");
-		exit(0);
-	}
 	data.die_time = ft_atoi(d_time);
 	data.eat_time = ft_atoi(e_time);
 	data.sleep_time = ft_atoi(s_time);
 	data.fork_num = data.philo_num;
-	data.forks = ft_init_forks(data.fork_num);
 	data.program_start = ft_start_time();
+	if (data.philo_num == 1)
+	{
+		ft_one_philo(data);
+	}
+	data.forks = ft_init_forks(data.fork_num);
 	data.exit = 0;
 	pthread_mutex_init(&data.exit_mutex, NULL);
 	return (data);
@@ -96,7 +94,7 @@ void	ft_philo_checker(t_data *data)
 	}
 }
 
-// void ft_void(void)
+// void ft_leaks(void)
 // {
 // 	system("leaks -q philo");
 // }

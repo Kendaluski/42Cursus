@@ -6,11 +6,29 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:02:06 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/02/09 00:01:30 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:16:29 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+void	ft_one_philo(t_data data)
+{
+	long	last_eaten;
+
+	last_eaten = ft_current_time(data.program_start);
+	printf("[%ld] Philosopher 1 has taken a fork\n",
+		ft_current_time(data.program_start));
+	while (1)
+	{
+		if (ft_current_time(data.program_start) - last_eaten > data.die_time)
+		{
+			printf(RED "[%ld] Philosopher 1 died\n" DEFAULT,
+				ft_current_time(data.program_start));
+			exit(0);
+		}
+	}
+}
 
 t_data	ft_mutex_destroy(t_data data)
 {
