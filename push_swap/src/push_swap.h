@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:19:56 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/18 09:24:06 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/03/16 00:16:36 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_stacks
 {
 	t_stack			*stack_a;
 	t_stack			*stack_b;
+	t_stack			*lower;
 	int				sizea;
 	int				sizeb;
 }					t_stacks;
@@ -263,5 +264,20 @@ int					ft_split_size(char **str);
  * @return t_stack* The stack freed
  */
 t_stack				*ft_clean_stack(t_stack *stack);
+
+/**
+ * @brief Prints both stacks
+ * 
+ * @param stacks 
+ */
+void				ft_print_list(t_stacks stacks);
+
+/**
+ * @brief Finish the sorting process in stack a
+ * 
+ * @param stacks Both stacks
+ * @return t_stacks Both stacks with a sorted
+ */
+t_stacks	ft_final_sort(t_stacks stacks);
 
 #endif

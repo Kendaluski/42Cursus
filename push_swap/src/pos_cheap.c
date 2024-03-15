@@ -6,11 +6,39 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 10:23:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/09/15 19:43:00 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/03/16 00:13:36 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_print_list(t_stacks stacks)
+{
+	t_stack	*tmp;
+
+	tmp = stacks.stack_a;
+	printf("Stack A\n");
+	while (tmp)
+	{
+		printf("Content: %ld ", tmp->content);
+		printf("Act_pos: %d ", tmp->act_pos);
+		printf("Targ_pos: %d ", tmp->targ_pos);
+		printf("Cost_a: %d ", tmp->cost_a);
+		printf("Cost_b: %d\n", tmp->cost_b);
+		tmp = tmp->next;
+	}
+	tmp = stacks.stack_b;
+	printf("Stack B\n");
+	while (tmp)
+	{
+		printf("Content: %ld ", tmp->content);
+		printf("Act_pos: %d ", tmp->act_pos);
+		printf("Targ_pos: %d ", tmp->targ_pos);
+		printf("Cost_a: %d ", tmp->cost_a);
+		printf("Cost_b: %d\n", tmp->cost_b);
+		tmp = tmp->next;
+	}
+}
 
 int	ft_pos(int n)
 {
