@@ -1,7 +1,0 @@
-# This is a generated file and its contents are an internal implementation detail.
-# The patch step will be re-executed if anything in this file changes.
-# No other meaning or use of this file is supported.
-
-command (connected)=/Users/jjaen-mo/.brew/Cellar/cmake/3.28.3/bin/cmake;-Dcan_fetch=YES;-P;/Users/jjaen-mo/Desktop/Cursus/cub3d/include/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
-command (disconnected)=/Users/jjaen-mo/.brew/Cellar/cmake/3.28.3/bin/cmake;-Dcan_fetch=NO;-P;/Users/jjaen-mo/Desktop/Cursus/cub3d/include/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
-work_dir=/Users/jjaen-mo/Desktop/Cursus/cub3d/include/MLX42/build/_deps/glfw-src
