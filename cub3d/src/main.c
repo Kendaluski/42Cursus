@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:01:32 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/05/13 13:47:17 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:57:31 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void ft_init_data(t_data *data)
 {
-	data->mlx = mlx_init(512,512,"Cub3D",false);
+	data->mlx = mlx_init(1500,1500,"Cub3D",false);
+	mlx_loop(data->mlx);
 }
 
 int main(int argc, char **argv)
