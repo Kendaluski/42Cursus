@@ -6,23 +6,25 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:01:32 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/05/30 17:57:31 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:56:10 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void ft_init_data(t_data *data)
+void	ft_init_data(t_data *data)
 {
-	data->mlx = mlx_init(1500,1500,"Cub3D",false);
+	data->mlx = mlx_init(1024, 512, "Cub3D", false);
+	ft_read_map("map.cub", data);
+	ft_print_map(data->map);
 	mlx_loop(data->mlx);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
-	
-	if(argc != 2)
+	t_data	*data;
+
+	if (argc != 2)
 	{
 		printf("[ERROR] No map specified\n");
 		return (1);
@@ -37,4 +39,5 @@ int main(int argc, char **argv)
 	}
 	data = malloc(sizeof(t_data));
 	ft_init_data(data);
+	free(data);
 }
