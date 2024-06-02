@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:01:32 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/05/30 18:56:10 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:31:46 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	ft_init_data(t_data *data)
 {
-	data->mlx = mlx_init(1024, 512, "Cub3D", false);
+	data->mlx = mlx_init(2048, 1024, "Cub3D", false);
 	ft_read_map("map.cub", data);
-	ft_print_map(data->map);
-	mlx_loop(data->mlx);
+	ft_gen_map(data);
 }
 
 int	main(int argc, char **argv)
@@ -39,5 +38,7 @@ int	main(int argc, char **argv)
 	}
 	data = malloc(sizeof(t_data));
 	ft_init_data(data);
+	mlx_key_hook(data->mlx, ft_movement, data);
+	mlx_loop(data->mlx);
 	free(data);
 }
