@@ -6,11 +6,30 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:44:52 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/02 23:29:35 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:05:17 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void ft_get_hw(t_data *data)
+{
+    int cnt;
+    int cnt2;
+
+    cnt = 0;
+    while(data->map[cnt])
+    {
+        cnt2 = 0;
+        while(data->map[cnt][cnt2])
+        {
+            cnt2++;
+        }
+        cnt++;
+    }
+    data->mapx = cnt2;
+    data->mapy = cnt;
+}
 
 int ft_get_size(char *file)
 {

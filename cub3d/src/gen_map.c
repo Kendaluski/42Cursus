@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 22:15:18 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/02 23:31:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:42:45 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_player(int height, int width, t_data *data)
 {
-	mlx_image_to_window(data->mlx, data->character, width * 64, height * 64);
+	mlx_image_to_window(data->mlx, data->character, width * 128, height * 128);
 }
 
 void	ft_create_textures(t_data *data)
@@ -68,9 +68,9 @@ void	ft_gen_map(t_data *data)
 		while (data->map[cnt][cnt2])
 		{
 			if (data->map[cnt][cnt2] == '1')
-				mlx_image_to_window(data->mlx, data->wall, cnt2 * 64, cnt * 64);
+				mlx_image_to_window(data->mlx, data->wall, cnt2 * 128, cnt * 128);
             if (data->map[cnt][cnt2] == '0')
-                mlx_image_to_window(data->mlx, data->floor, cnt2 * 64, cnt * 64);
+                mlx_image_to_window(data->mlx, data->floor, cnt2 * 128, cnt * 128);
 			cnt2++;
 		}
 		cnt++;

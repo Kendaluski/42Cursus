@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:54:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/02 23:25:45 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:08:47 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,29 @@
 # include <unistd.h>
 # include <stdio.h>
 
+# define PI 3.14159265358979323846
+
 typedef struct s_data
 {
 	mlx_t	*mlx;
 	mlx_image_t	*character;
 	mlx_image_t	*wall;
 	mlx_image_t *floor;
-	int		playerposx;
-	int		playerposy;
-	int		steps;
+	mlx_image_t *full;
+	double		playerposx;
+	double		playerposy;
+	double		deltax;
+	double		deltay;
+	double		pangle;
 	char	**map;
-
+	int		mapx;
+	int		mapy;
 }			t_data;
 
 void		ft_read_map(char *file, t_data *data);
 void		ft_print_map(char **map);
 void	ft_gen_map(t_data *data);
-void	ft_movement(mlx_key_data_t keydata, void *data);
-void	ft_add_step(t_data *data, int32_t *posx, int32_t *posy, char key);
-
+void	draw_ray_minimap_y(t_data *data);
+void ft_get_hw(t_data *data);
+void drawRays3D(t_data *data);
 #endif
