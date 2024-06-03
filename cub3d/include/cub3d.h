@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:54:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/03 18:08:47 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:26:33 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void		ft_print_map(char **map);
 void	ft_gen_map(t_data *data);
 void	draw_ray_minimap_y(t_data *data);
 void ft_get_hw(t_data *data);
-void drawRays3D(t_data *data);
+void drawRays3D(void *tdata);
 #endif

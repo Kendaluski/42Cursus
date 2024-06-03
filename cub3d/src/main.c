@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:01:32 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:13:36 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:25:19 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	hook(void *param)
 		data->deltax = cos(data->pangle) * 5;
 		data->deltay = sin(data->pangle) * 5;
 	}
-	//drawRays3D(data);
 }
 
 void	ft_init_data(t_data *data)
@@ -85,6 +84,7 @@ int	main(int argc, char **argv)
 	mlx_image_to_window(data->mlx, data->full, 0, 0);
 	ft_get_hw(data);
 	mlx_loop_hook(data->mlx, hook, data);
+	mlx_loop_hook(data->mlx, drawRays3D, data);
 	mlx_loop(data->mlx);
 	free(data);
 }
