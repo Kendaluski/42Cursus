@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:44:52 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:22:28 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:55:16 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void ft_get_hw(t_data *data)
     cnt2 = 0;
     while(data->map[0][cnt2])
         cnt2++;
-    data->mapx = cnt2;
-    data->mapy = cnt;
+    data->mapx = cnt2 - 1;
+    data->mapy = cnt - 1;
 }
 
 int ft_get_size(char *file)

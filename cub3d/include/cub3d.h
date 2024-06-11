@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:54:14 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:26:33 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:04:23 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,37 @@
 # include <stdio.h>
 
 # define PI 3.14159265358979323846
+# define WIDTH 800
+# define HEIGHT 600
+
+typedef struct s_line
+{
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+}		t_line;
+
+typedef struct s_windows
+{
+	void *mlx;
+	void *win;
+	void *img;
+	int *data;
+	int bpp;
+	int size_l;
+	int endian;
+}	t_windows;
+
+typedef struct s_map
+{
+	int map_high;
+	int map_wide;
+	int img_high;
+	int img_wide;
+	int dx;
+	int dy;
+}	t_map;
 
 typedef struct s_data
 {
@@ -46,4 +77,5 @@ void	ft_gen_map(t_data *data);
 void	draw_ray_minimap_y(t_data *data);
 void ft_get_hw(t_data *data);
 void drawRays3D(void *tdata);
+
 #endif

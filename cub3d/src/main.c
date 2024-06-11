@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:01:32 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:25:19 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:09:15 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
 		data->pangle += 0.1;
-		if (data->pangle > 2 * PI)
-			data->pangle -= 0;
+		if (data->pangle >= 2 * PI)
+			data->pangle -= 2 * PI;
 		data->deltax = cos(data->pangle) * 5;
 		data->deltay = sin(data->pangle) * 5;
 	}
