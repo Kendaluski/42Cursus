@@ -6,7 +6,7 @@
 /*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:01:32 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2024/06/11 11:09:15 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:09:12 by jjaen-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	hook(void *param)
 
 void	ft_init_data(t_data *data)
 {
-	data->mlx = mlx_init(2048, 1024, "Cub3D", false);
+	data->mlx = mlx_init(1024, 512, "Cub3D", false);
+	data->full = mlx_new_image(data->mlx, 2048, 1024);
+	mlx_image_to_window(data->mlx, data->full, 0, 0);
 	ft_read_map("map.cub", data);
 	ft_gen_map(data);
 	data->pangle = 0;
