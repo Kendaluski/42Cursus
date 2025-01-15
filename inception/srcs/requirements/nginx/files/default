@@ -1,0 +1,33 @@
+server {
+    listen 80;
+    server_name jjaen-mo.42.fr www.jjaen-mo.42.fr;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name jjaen-mo.42.fr www.jjaen-mo.42.fr;
+
+    root /var/www/html;
+    index index.php index.html index.htm;
+
+    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass wordpress:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
