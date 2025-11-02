@@ -8,12 +8,12 @@ volumes:
   wordpress:
     driver_opts:
       type: none
-      device: /home/jjaen-mo/volumes/wp
+      device: /home/jjaen-mo/data/wp
       o: bind
   mariadb:
     driver_opts:
       type: none
-      device: /home/jjaen-mo/volumes/db
+      device: /home/jjaen-mo/data/db
       o: bind
 
 services:
