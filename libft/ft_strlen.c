@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 17:56:53 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/21 19:54:22 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:01:33 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:01:35 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_strlen(const char *str)
 {

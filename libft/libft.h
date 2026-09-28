@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 12:04:50 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/25 14:51:20 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/17 12:00:00 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 10:00:00 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,8 +298,6 @@ void				ft_putendl_fd(char *s, int fd);
  * @param fd 
  */
 void				ft_putnbr_fd(int n, int fd);
-
-//Bonus Part
 
 typedef struct s_list
 {

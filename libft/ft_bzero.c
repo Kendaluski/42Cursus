@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 18:25:27 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/21 19:53:00 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:04:17 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:04:17 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_bzero(void *str, int n)
 {

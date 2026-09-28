@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 21:08:00 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/27 13:46:00 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:02:04 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:02:05 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static int	get_arr_num(const char *s, char c)
 {

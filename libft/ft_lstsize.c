@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/24 13:26:26 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/24 13:51:37 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:02:49 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:02:50 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*next;
+	int	cnt;
 
-	while (*lst)
+	cnt = 0;
+	while (lst)
 	{
-		next = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		(*lst) = next;
+		cnt++;
+		lst = lst->next;
 	}
-	*lst = NULL;
+	return (cnt);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 16:49:13 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/26 14:45:33 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:03:35 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:03:36 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static int	num_digits(unsigned int n)
 	unsigned int	digits;
 
 	digits = 0;
-	if (n < 0)
-		n = n * -1;
-	while (n >= 9)
+	while (n >= 10)
 	{
 		n = n / 10;
 		digits++;

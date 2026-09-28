@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 19:06:08 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/21 19:53:51 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:02:30 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:02:30 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memmove(void *s1, const void *s2, size_t n)
 {

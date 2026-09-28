@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 13:49:15 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/04/21 19:52:50 by jjaen-mo         ###   ########.fr       */
+/*   Created: 2026/09/28 11:04:20 by jojaen-m          #+#    #+#             */
+/*   Updated: 2026/09/28 11:04:21 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_atoi(const char *c)
 {
