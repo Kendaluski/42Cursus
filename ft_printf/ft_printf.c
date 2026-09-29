@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjaen-mo <jjaen-mo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:39:24 by jjaen-mo          #+#    #+#             */
-/*   Updated: 2023/05/17 12:05:14 by jjaen-mo         ###   ########.fr       */
+/*   Updated: 2026/09/29 20:28:55 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	ft_printf(const char *str, ...)
 }
 // int	main(void)
 // {
-// 	int a = ft_printf(" %p %p ", 0, 0);
+// 	int a = ft_printf(" %p", (void *)0);
 // 	ft_printf("\n%i\n", a);
-// 	int b = printf(" %p %p ", 0, 0);
+// 	int b = printf(" %p", (void *)0);
 // 	printf("\n%i\n", b);
 // }
