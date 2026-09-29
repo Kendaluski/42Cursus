@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 11:02:59 by jojaen-m          #+#    #+#             */
-/*   Updated: 2026/09/28 11:02:59 by jojaen-m         ###   ########.fr       */
+/*   Updated: 2026/09/29 20:01:26 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*resl;
 	t_list	*first;
 
-	if (!lst)
+	if (!lst || !f)
 		return (NULL);
 	first = malloc(sizeof(t_list));
 	if (!first)

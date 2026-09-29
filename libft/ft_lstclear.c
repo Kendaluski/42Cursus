@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jojaen-m <jojaen-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jojaen-m <jojaen-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 11:03:23 by jojaen-m          #+#    #+#             */
-/*   Updated: 2026/09/28 11:03:24 by jojaen-m         ###   ########.fr       */
+/*   Updated: 2026/09/29 19:37:09 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*next;
 
+	if (!lst || !del)
+		return ;
 	while (*lst)
 	{
 		next = (*lst)->next;
