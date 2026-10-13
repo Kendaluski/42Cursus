@@ -6,7 +6,7 @@
 /*   By: jojaen-m <jojaen-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 19:21:43 by jojaen-m          #+#    #+#             */
-/*   Updated: 2026/10/13 19:21:56 by jojaen-m         ###   ########.fr       */
+/*   Updated: 2026/10/13 19:29:54 by jojaen-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int fd;
-// 	fd = open("test", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	close(fd);
-// }
+int	main(void)
+{
+	int fd;
+	fd = open("test", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	close(fd);
+}

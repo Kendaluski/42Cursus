@@ -55,7 +55,6 @@ La versión obligatoria usa una única cadena estática porque conserva el estad
 - [`read(2)` en Linux man-pages](https://man7.org/linux/man-pages/man2/read.2.html): lectura desde descriptores de archivo y tratamiento de EOF y errores.
 - [`open(2)` en Linux man-pages](https://man7.org/linux/man-pages/man2/open.2.html): apertura de archivos y obtención de descriptores.
 - [`malloc(3)` en Linux man-pages](https://man7.org/linux/man-pages/man3/malloc.3.html): asignación y liberación dinámica de memoria.
-- [The Open Group Base Specifications: `read`](https://pubs.opengroup.org/onlinepubs/9699919799/functions/read.html): especificación POSIX de la operación de lectura.
 
 ### Uso de inteligencia artificial
 
